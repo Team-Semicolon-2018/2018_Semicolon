@@ -13,9 +13,6 @@ int prn_xy(char *print, int x, int y, int txtcolor, int bgcolor, bool enter) {
 	gotoxy(x, y);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), txtcolor | (bgcolor << 4));
 
-
-	//implement here
-
 	printf("%s", print);
 	if (enter == true) printf("\n");
 
