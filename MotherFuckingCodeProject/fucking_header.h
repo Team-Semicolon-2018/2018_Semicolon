@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <Windows.h>	 //헤더파일
+#include "disclaimer.h"
 #include "key_define.h"
 #include "color_HELL_NOGADA.h"
 
@@ -49,7 +50,7 @@ void intro(void);
 
 void drawPlayer(void);
 void drawBullet(int i);
-int title(void);
+void title(void);
 
 
 void control(void);

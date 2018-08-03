@@ -1,33 +1,23 @@
 #include "fucking_header.h"
 
-void spawnEnemy(int index_of_Enemy, int isRight)
-{
-	if (isRight)
-	{
+void spawnEnemy(int index_of_Enemy, int isRight) {
+	if (isRight) {
 		Enemy[index_of_Enemy].posx = 77;
 		Enemy[index_of_Enemy].posy = 5 - index_of_Enemy;
 		Enemy[index_of_Enemy].health = 2;
 	}
-
-	else
-	{
+	else {
 		Enemy[index_of_Enemy].posx = 3;
 		Enemy[index_of_Enemy].posy = 5 - index_of_Enemy;
 		Enemy[index_of_Enemy].health = 2;
 	}
 }
 
-void drawEnemy(void)
-{
-	for (int i = 0; i < 20; i++)
-	{
-		if (Enemy[i].health == 0)
-			break;
-
-		else
-		{
-			switch (Round)
-			{
+void drawEnemy(void) {
+	for (int i = 0; i < 20; i++) {
+		if (Enemy[i].health == 0) break;
+		else {
+			switch (Round) {
 			case 1:
 			{
 				if (Enemy[i].health == 1) {

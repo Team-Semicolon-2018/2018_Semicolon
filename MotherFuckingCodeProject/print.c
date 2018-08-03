@@ -1,12 +1,10 @@
 #include "fucking_header.h"
-#include "disclaimer.h"
 
 
 void gotoxy(int x, int y) {
 	COORD Pos = { x - 1, y - 1 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
-
 
 int prn_xy(char *print, int x, int y, int txtcolor, int bgcolor, bool enter) {
 

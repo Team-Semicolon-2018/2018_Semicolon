@@ -1,5 +1,4 @@
 ﻿#include "fucking_header.h"
-#include "disclaimer.h"
 
 void intro() {
 	//80x30
@@ -59,8 +58,8 @@ void intro() {
 	title();
 }
 
-int title() {
+void title() {
 
-
-	return DEF_RET_VAL;
+	//implement here
+	intro();
 }
