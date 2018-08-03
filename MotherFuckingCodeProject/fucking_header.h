@@ -46,11 +46,12 @@ int prn_xy(char *print, int x, int y, int txtcolor, int bgcolor, bool enter);
 void init();
 void hidecursor();
 
-void intro(void);
+void load(void);
 
 void drawPlayer(void);
 void drawBullet(int i);
 void title(void);
+void start(void);
 
 
 void control(void);

@@ -25,7 +25,8 @@ void init() {
 
 int main() {
 	init();
-	title();
+	
+	start();
 	control();
 	return DEF_RET_VAL;
 }

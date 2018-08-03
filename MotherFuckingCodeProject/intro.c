@@ -1,6 +1,6 @@
 ﻿#include "fucking_header.h"
 
-void intro() {
+void load() {
 	//80x30
 	gotoxy(0, 0);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //회색으로 변경
@@ -55,11 +55,18 @@ void intro() {
 	}
 	
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7 | (0 << 4));
-	title();
+	
 }
 
 void title() {
-
+	
 	//implement here
-	intro();
+	
+}
+
+void start() {
+	load();
+	title();
+	//implement here
+
 }
