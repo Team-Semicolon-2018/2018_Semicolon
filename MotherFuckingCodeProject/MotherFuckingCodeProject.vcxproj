@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ending.c" />
     <ClCompile Include="enemybulllet.c" />
     <ClCompile Include="intro.c" />
     <ClCompile Include="main.c" />

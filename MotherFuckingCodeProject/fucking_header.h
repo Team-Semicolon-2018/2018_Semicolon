@@ -12,10 +12,13 @@ typedef int bool;
 #define false 0
 
 #define DEF_RET_VAL 0 //디폴트 리턴 밸류
-#define PROGRAM_VERSION "0.8.2_r4" //0.month.day_revision
+//#define PROGRAM_VERSION "0.8.2_r4" //0.month.day_revision
 
 #define DEFAULT_TXT_COLOR CR_WHITE 
 #define DEFAULT_BG_COLOR CR_BLACK 
+
+#define MAX_ENEMY 50
+#define MAX_BULLET 50
 
 typedef struct _Bullet {
 	int posx;
@@ -29,12 +32,13 @@ typedef struct _Jet {
 	int posx;
 	int posy;
 	int health;
+	//bool isDead;
 }Jet;
 
 
-Jet Enemy[20];
+Jet Enemy[(MAX_ENEMY+2)];
 Jet Player;
-Bullet Pl_Bullet[5];
+Bullet Pl_Bullet[MAX_BULLET+2];
 Bullet En_Bullet[100];
 int Round;	//나중에 라운드에 따라 적 움직임 다양하게 만들거임. 물론 그러다가 내가 멘탈이 터져서 빡종할거같음.
 
@@ -59,9 +63,10 @@ void FuckthoseCvalnomeuEnemy(void);
 
 void FuckThoseCvalnomeuPlayer(void);	//인자값 없이 모든 적이 한꺼번에 쏘는거임. ㅇㅋ?
 void drawEnemy(void);	//인자값 없이 걍 모든 적을 한번에 출력하는 방식임.
-void spawnEnemy(int index_of_Enemy, int isRight);	//총알 만드는거랑 똑같은 방식으로 만들거임. 어떤 인덱스에 적이 있는지 없는지 확인은 Jet.health가 0인지 아닌지로 판단. 참고로 라운드별로 나오는 적기의 위치는 노가다로 누군가 만들어주길 바랄거임. 인덱스를 인자로 받는 이유는 적기의 인덱스마다 움직이는 궤도가 다르기 때문.  마지막인자는 0이 왼쪽, 1이 오른쪽임.
+void spawnEnemy(int index_of_Enemy, int x, int y, int health);	//총알 만드는거랑 똑같은 방식으로 만들거임. 어떤 인덱스에 적이 있는지 없는지 확인은 Jet.health가 0인지 아닌지로 판단. 참고로 라운드별로 나오는 적기의 위치는 노가다로 누군가 만들어주길 바랄거임. 인덱스를 인자로 받는 이유는 적기의 인덱스마다 움직이는 궤도가 다르기 때문.  마지막인자는 0이 왼쪽, 1이 오른쪽임.
 
-
+int chkLvClear(void);
+void LevelClear(void);
 
 
 

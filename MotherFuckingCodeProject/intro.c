@@ -59,8 +59,25 @@ void load() {
 }
 
 void title() {
-	
-	//implement here
+	system("cls");
+
+	// <!---Start Printing Logo--->
+	prn_xy("  ;;;;;; ", 13, 8, CR_GREEN, CR_BLACK, false);
+	prn_xy("  ;::::; ", 13, 9, CR_GREEN, CR_BLACK, false);
+	prn_xy("  ;;;;;; ", 13, 10, CR_GREEN, CR_BLACK, false);
+	prn_xy("", 13, 11, CR_GREEN, CR_BLACK, false);
+	prn_xy("", 13, 12, CR_GREEN, CR_BLACK, false);
+	prn_xy("", 13, 13, CR_GREEN, CR_BLACK, false);
+	prn_xy("  ;;;;;; ", 13, 14, CR_GREEN, CR_BLACK, false);
+	prn_xy("  ;::::; ", 13, 15, CR_GREEN, CR_BLACK, false);
+	prn_xy("  ;:::;; ", 13, 16, CR_GREEN, CR_BLACK, false);
+	prn_xy(" ;:::;   ", 13, 17, CR_GREEN, CR_BLACK, false);
+	prn_xy(" ;;;;    ", 13, 18, CR_GREEN, CR_BLACK, false);
+	// <!---End Printing Logo--->
+	prn_xy("//'Codename Semicolon' Logo(Ascii Art)(Doh) Here", 27, 7, CR_GREEN, CR_BLACK, false);
+	prn_xy("Press Any Key To Start...", 27, 21, CR_GREEN, CR_BLACK, false);
+	while (!kbhit()) {
+	}
 	
 }
 
