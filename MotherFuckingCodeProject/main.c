@@ -17,10 +17,18 @@ void hidecursor() {
 	ConsoleCursor.dwSize = 1; // 커서 사이즈
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &ConsoleCursor);
 }
+
 void init() {
 	system("title Hell, O world!");
 	system("mode con cols=80 lines=30");
 	hidecursor();
+	for (int i = 0; i <= MAX_ENEMY; i++) {
+
+		Enemy[i].health = 0;
+		Enemy[i].posx = 0;
+		Enemy[i].posy = 0;
+	}
+
 }
 
 int main() {
