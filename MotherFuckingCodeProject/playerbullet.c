@@ -1,4 +1,6 @@
 #include "fucking_header.h"
+
+//PlaySound(TEXT(SAM_SOUND2_FILE_NAME), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 /*
 #define BULLET ";"	//총알을 세미콜론으로 바꾸면 좀 구림. 적군이 쏘는 총알을 이걸로 바꿔야겠음.
 #define BULLET "⊙"
@@ -32,22 +34,20 @@ void FuckthoseCvalnomeuEnemy(void)
 	}
 
 	Pl_Bullet[index].isused = 1;
+	PlaySound(TEXT("..\\res\\bullet.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	Pl_Bullet[index].posx = Player.posx;
 	Pl_Bullet[index].posy = Player.posy;
+
 }
 
-int chkLvClear() { //제대로 작동안함.
+int chkAliveEnemy() {
 	int chk = 0;
-	for (int i = 0; i <= MAX_ENEMY; i++) {
+	for (int i = 0; i < MAX_ENEMY; i++) {
 		if (Enemy[i].health == 0) {
 			chk++;
 		}
 	}
-	if (chk > 9999) {
-		return 1;
-	}
-	
-	return 0;
+	return chk;
 	
 }
 
@@ -55,23 +55,9 @@ void control(void)
 {
 	int ps_tmp = 1, bl_tmp = 1;
 	Round = 1;
-
-
-	//for (int i = 0; i <= MAX_ENEMY; i++) {
-		//spawnEnemy(i, (2+i), 5, (i+1));
-	//}
 	
 	//플레이어 간격 반드시 3씩 띄울것
-	/*
-	spawnEnemy(0, 20, 4, 3);
-	spawnEnemy(1, 23, 4, 3);
-	spawnEnemy(2, 26, 4, 3);
-
-	spawnEnemy(3, 19, 6, 2);
-	spawnEnemy(4, 22, 6, 2);
-	spawnEnemy(5, 25, 6, 2);
-	spawnEnemy(6, 28, 6, 2);
-	*/
+	
 	for (int i = 0; i < 10; i++) {
 		spawnEnemy(i, 20+(i*3), 4, 3);
 	}
@@ -81,18 +67,16 @@ void control(void)
 	for (int i = 20; i < 30; i++) {
 		spawnEnemy(i, 20 + ((i - 20) * 3), 8, 1);
 	}
-	
 
 	Player.posx = 40;
 	Player.posy = 26;
+	char itoa_tmp[10] = { 0, };
+
 	while (true)
 	{
-		
-
 		drawEnemy();
 		
-		//싀발 병쉰아 break쓰지말고 continue를 써야지 내가 그거때매 2시간동안 붇잡고 있었잖아
-		//ㅅㅂ놈아!!!!!!!
+		//continue 쓰셈
 		for (int i = 0; i < MAX_BULLET; i++)
 		{
 			if (Pl_Bullet[i].isused == false) {
@@ -173,10 +157,18 @@ void control(void)
 
 		if (ps_tmp > 4) ps_tmp = 1;
 		drawPlayer();
+		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK, false);
+		prn_xy(itoa(Player.health, itoa_tmp, 10), 76, 1, CR_LRED, CR_BLACK, false);
+		prn_xy("Alive Enemys: ", 50, 1, CR_LRED, CR_BLACK, false);
+		prn_xy(itoa(50 - chkAliveEnemy(), itoa_tmp, 10), 64, 1, CR_LRED, CR_BLACK, false);
 
 		system("cls");
-		//if (chkLvClear) {
-		//	LevelClear();
-		//}
+
+		if (chkAliveEnemy() == MAX_ENEMY) {
+			LevelClear();
+		}
+		if (Player.health == 0) {
+			gameOver();
+		}
 	}
 }
