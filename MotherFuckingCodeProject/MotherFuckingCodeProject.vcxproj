@@ -152,6 +152,11 @@
     <ClInclude Include="fucking_header.h" />
     <ClInclude Include="key_define.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\res\bullet.wav" />
+    <Media Include="..\res\galaga_end_theme.wav" />
+    <Media Include="..\res\start.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

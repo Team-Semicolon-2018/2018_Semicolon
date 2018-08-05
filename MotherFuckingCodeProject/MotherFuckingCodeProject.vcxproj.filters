@@ -48,4 +48,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\res\bullet.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\start.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\galaga_end_theme.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

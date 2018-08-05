@@ -28,6 +28,7 @@ void init() {
 		Enemy[i].posx = 0;
 		Enemy[i].posy = 0;
 	}
+	Player.health = 3;
 
 }
 
