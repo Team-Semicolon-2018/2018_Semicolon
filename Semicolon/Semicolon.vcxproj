@@ -22,8 +22,9 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C6EF5A12-F092-4220-87F1-6668F62AAB7E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MotherFuckingCodeProject</RootNamespace>
+    <RootNamespace>Semicolon</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectName>Semicolon</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
