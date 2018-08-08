@@ -18,13 +18,31 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ending.c" />
+    <ClCompile Include="enemybulllet.c" />
+    <ClCompile Include="intro.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="playerbullet.c" />
+    <ClCompile Include="print.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="color_HELL_NOGADA.h" />
+    <ClInclude Include="disclaimer.h" />
+    <ClInclude Include="fucking_header.h" />
+    <ClInclude Include="key_define.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\res\bullet.wav" />
+    <Media Include="..\res\galaga_end_theme.wav" />
+    <Media Include="..\res\start.wav" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C6EF5A12-F092-4220-87F1-6668F62AAB7E}</ProjectGuid>
+    <ProjectGuid>{82493336-EB22-4467-828F-3B585FCCCBA3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Semicolon</RootNamespace>
+    <RootNamespace>My2018Semicolon</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
-    <ProjectName>Semicolon</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -87,6 +105,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -99,6 +118,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -113,6 +133,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -129,6 +150,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -139,25 +161,6 @@
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ending.c" />
-    <ClCompile Include="enemybulllet.c" />
-    <ClCompile Include="intro.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="playerbullet.c" />
-    <ClCompile Include="print.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="color_HELL_NOGADA.h" />
-    <ClInclude Include="disclaimer.h" />
-    <ClInclude Include="fucking_header.h" />
-    <ClInclude Include="key_define.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="..\res\bullet.wav" />
-    <Media Include="..\res\galaga_end_theme.wav" />
-    <Media Include="..\res\start.wav" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

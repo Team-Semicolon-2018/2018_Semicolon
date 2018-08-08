@@ -10,7 +10,7 @@
 #pragma comment(lib, "winmm.lib") //사운드 관련 함수들
 
 #define _CRT_SECURE_NO_WARNINGS
-
+#pragma warning(disable:4996)
 
 
 
@@ -76,7 +76,7 @@ void spawnEnemy(int index_of_Enemy, int x, int y, int health);	//총알 만드는거랑
 int chkAliveEnemy(void);
 void LevelClear(void);
 
-int gameOver(void);
+void gameOver(void);
 
 
 /*

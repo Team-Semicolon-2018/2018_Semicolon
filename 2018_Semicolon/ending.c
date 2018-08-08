@@ -11,7 +11,7 @@ void LevelClear() {
 
 
 
-int gameOver() {
+void gameOver() {
 	int x = 0;
 	int y = 15;
 	system("cls");
