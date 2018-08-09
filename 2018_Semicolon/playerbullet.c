@@ -71,6 +71,22 @@ void control(void)
 	Player.posx = 40;
 	Player.posy = 26;
 	char itoa_tmp[10] = { 0, };
+	//Ready
+	system("cls");
+	PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
+
+	drawEnemy();
+	prn_xy("Player 1", 27, 15, CR_RED, CR_BLACK, false);
+	Sleep(2000);
+	prn_xy("Level", 27, 16, CR_RED, CR_BLACK, false);
+	prn_xy(itoa(Round, itoa_tmp, 10), 34, 16, CR_RED, CR_BLACK, false);
+	Sleep(2000);
+
+	system("cls");
+	drawEnemy();
+	prn_xy("Ready", 27, 17, CR_RED, CR_BLACK, false);
+	Sleep(4000);
+
 
 	while (true)
 	{
