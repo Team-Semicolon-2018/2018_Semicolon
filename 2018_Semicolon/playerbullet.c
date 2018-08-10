@@ -1,6 +1,4 @@
 #include "fucking_header.h"
-
-//PlaySound(TEXT(SAM_SOUND2_FILE_NAME), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 /*
 #define BULLET ";"	//총알을 세미콜론으로 바꾸면 좀 구림. 적군이 쏘는 총알을 이걸로 바꿔야겠음.
 #define BULLET "⊙"
