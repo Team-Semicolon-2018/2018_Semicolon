@@ -72,6 +72,7 @@ void control(void)
 	//Ready
 	system("cls");
 	PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
+	PlaySound(TEXT("..\\res\\start.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 	drawEnemy();
 	prn_xy("Player 1", 27, 15, CR_RED, CR_BLACK, false);

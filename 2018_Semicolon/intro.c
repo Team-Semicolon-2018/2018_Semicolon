@@ -91,7 +91,6 @@ void title() {
 	prn_xy("|     |_ |       ||       ||       || | |   |", 25, 17, CR_GREEN, CR_BLACK, false);
 	prn_xy("|_______||_______||_______||_______||_|  |__|", 25, 18, CR_GREEN, CR_BLACK, false);
 
-	PlaySound(TEXT("..\\res\\start.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 
 
