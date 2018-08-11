@@ -34,7 +34,12 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\bullet.wav" />
+    <Media Include="..\res\enemy3die.wav" />
+    <Media Include="..\res\enemyhit1.wav" />
+    <Media Include="..\res\enemyhit2.wav" />
+    <Media Include="..\res\enemyhit3.wav" />
     <Media Include="..\res\galaga_end_theme.wav" />
+    <Media Include="..\res\NewPlayerInit.wav" />
     <Media Include="..\res\start.wav" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

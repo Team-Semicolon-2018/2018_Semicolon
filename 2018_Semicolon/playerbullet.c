@@ -10,8 +10,17 @@
 
 void drawPlayer(void)
 {
-	prn_xy("凸", Player.posx, Player.posy, CR_LGREEN, CR_BLACK, false);
+	for (int i = Player.posx*10-20; i <= Player.posx*10+20; i++) {
+		for (int j = Player.posy*15+100; j <= Player.posy*15+120; j++)
+		{
+
+			SetPixel(hdc, i, j, RGB(0, 255, 255));     // 점을 찍는다. RGB( , , )값에 따라 색이 달라진다.
+		}
+	}
+	
+	//prn_xy("凸", Player.posx, Player.posy, CR_LGREEN, CR_BLACK, false);
 }
+
 
 void drawBullet(int i)
 {
@@ -51,19 +60,20 @@ int chkAliveEnemy() {
 
 void control(void)
 {
-	int ps_tmp = 1, bl_tmp = 1;
+	int ps_tmp = 1;
+	int bl_tmp = 1;
 	Round = 1;
 	
 	//플레이어 간격 반드시 3씩 띄울것
 	
 	for (int i = 0; i < 10; i++) {
-		spawnEnemy(i, 20+(i*3), 4, 3);
+		spawnEnemy(i, 20+(i*3), 4, 3); //일등병 소환
 	}
 	for (int i = 10; i < 20; i++) {
-		spawnEnemy(i, 20 + ((i - 10) * 3), 6, 2);
+		spawnEnemy(i, 20 + ((i - 10) * 3), 6, 2); //이등병 소환
 	}
 	for (int i = 20; i < 30; i++) {
-		spawnEnemy(i, 20 + ((i - 20) * 3), 8, 1);
+		spawnEnemy(i, 20 + ((i - 20) * 3), 8, 1); //맨앞에 졸병 소환
 	}
 
 	Player.posx = 40;
@@ -86,6 +96,12 @@ void control(void)
 	prn_xy("Ready", 27, 17, CR_RED, CR_BLACK, false);
 	Sleep(4000);
 
+	
+	
+	clock_t nowtime_tmp = clock();
+	long int nowtime = nowtime_tmp;
+	long int firetime = 0;
+	
 
 	while (true)
 	{
@@ -108,18 +124,29 @@ void control(void)
 			{
 				if (Enemy[j].health == 0)
 					continue;
-				if (Pl_Bullet[i].posx == Enemy[j].posx && (Pl_Bullet[i].posy == Enemy[j].posy))
+				if (((Pl_Bullet[i].posx == Enemy[j].posx) || (Pl_Bullet[i].posx == Enemy[j].posx + 1) || (Pl_Bullet[i].posx == Enemy[j].posx - 1)) && (Pl_Bullet[i].posy == Enemy[j].posy))
 				{
 					Pl_Bullet[i].isused = 0;
 					Enemy[j].health--;
+					if (Enemy[j].level == 3 && Enemy[j].health == 1) {
+						PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					} else if (Enemy[j].level == 3 && Enemy[j].health == 0) {
+						PlaySound(TEXT("..\\res\\enemy3die.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					} else if (Enemy[j].level == 2) {
+						PlaySound(TEXT("..\\res\\enemyhit2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					} else if (Enemy[j].level == 1) {
+						PlaySound(TEXT("..\\res\\enemyhit1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					}
 				}
 			}
 
 			if (Pl_Bullet[i].isused == true)
 			{
-				Pl_Bullet[i].posy--;
-
-				drawBullet(i);
+				//if (bl_tmp == 1) {
+					Pl_Bullet[i].posy--;
+					drawBullet(i);	
+				//}
+				//bl_tmp++;
 			}
 		}
 
@@ -144,33 +171,35 @@ void control(void)
 		}
 		
 
-		if ((GetAsyncKeyState(VK_LEFT) & 0x8000) && !(Player.posx < 3)) {
+		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) & 0x8000)) && !(Player.posx < 3)) {
 			if (ps_tmp == 1) {
 				Player.posx--;
-				ps_tmp++;
 			}
-			else {
-				ps_tmp++;
+			ps_tmp++;
+		}
+		if (((GetAsyncKeyState(KB_RIGHT) & 0x8000) || (GetAsyncKeyState(KB_d) & 0x8000) || (GetAsyncKeyState(KB_D) & 0x8000)) && !(Player.posx > 77)) {
+			if (ps_tmp == 1) {
+				Player.posx++;
+			}
+			ps_tmp++;
+			
+		}
+		if (GetAsyncKeyState(KB_SPACE) || (GetAsyncKeyState(KB_UP)) || (GetAsyncKeyState(KB_DOWN)) || (GetAsyncKeyState(KB_a)) || (GetAsyncKeyState(KB_s)) || (GetAsyncKeyState(KB_A)) || (GetAsyncKeyState(KB_S))) {
+
+			nowtime_tmp = clock();
+			nowtime = nowtime_tmp;
+			
+
+			if (firetime <= (nowtime - 345)) {
+				FuckthoseCvalnomeuEnemy();
+				firetime = nowtime;
 			}
 			
 		}
-		if ((GetAsyncKeyState(VK_RIGHT) & 0x8000) && !(Player.posx > 77)) {
-			if (ps_tmp == 1) {
-				Player.posx++;
-				ps_tmp++;
-			}
-			else {
-				ps_tmp++;
-			}
-		}
-		if (GetAsyncKeyState(KB_SPACE) && bl_tmp == 1)
-			FuckthoseCvalnomeuEnemy();
-		
-		bl_tmp++;
+			
 
-		if (bl_tmp > 7) bl_tmp = 1;
-
-		if (ps_tmp > 4) ps_tmp = 1;
+		if (ps_tmp > 6) ps_tmp = 1;
+		//if (bl_tmp > 2) bl_tmp = 1;
 		drawPlayer();
 		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK, false);
 		prn_xy(itoa(Player.health, itoa_tmp, 10), 76, 1, CR_LRED, CR_BLACK, false);

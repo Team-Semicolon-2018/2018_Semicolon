@@ -58,5 +58,20 @@
     <Media Include="..\res\start.wav">
       <Filter>리소스 파일</Filter>
     </Media>
+    <Media Include="..\res\enemy3die.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\enemyhit1.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\enemyhit2.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\enemyhit3.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\NewPlayerInit.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
   </ItemGroup>
 </Project>

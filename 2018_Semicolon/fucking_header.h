@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <Windows.h>	 //헤더파일
+#include <time.h>
 #include "disclaimer.h"
 #include "key_define.h"
 #include "color_HELL_NOGADA.h"
+
 
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib") //사운드 관련 함수들
@@ -40,7 +42,7 @@ typedef struct _Jet {
 	int posx;
 	int posy;
 	int health;
-	//bool isDead;
+	int level;
 }Jet;
 
 
@@ -71,13 +73,15 @@ void FuckthoseCvalnomeuEnemy(void);
 
 void FuckThoseCvalnomeuPlayer(void);	//인자값 없이 모든 적이 한꺼번에 쏘는거임. ㅇㅋ?
 void drawEnemy(void);	//인자값 없이 걍 모든 적을 한번에 출력하는 방식임.
-void spawnEnemy(int index_of_Enemy, int x, int y, int health);	//총알 만드는거랑 똑같은 방식으로 만들거임. 어떤 인덱스에 적이 있는지 없는지 확인은 Jet.health가 0인지 아닌지로 판단. 참고로 라운드별로 나오는 적기의 위치는 노가다로 누군가 만들어주길 바랄거임. 인덱스를 인자로 받는 이유는 적기의 인덱스마다 움직이는 궤도가 다르기 때문.  마지막인자는 0이 왼쪽, 1이 오른쪽임.
+void spawnEnemy(int index_of_Enemy, int x, int y, int level);	//총알 만드는거랑 똑같은 방식으로 만들거임. 어떤 인덱스에 적이 있는지 없는지 확인은 Jet.health가 0인지 아닌지로 판단. 참고로 라운드별로 나오는 적기의 위치는 노가다로 누군가 만들어주길 바랄거임. 인덱스를 인자로 받는 이유는 적기의 인덱스마다 움직이는 궤도가 다르기 때문.  마지막인자는 0이 왼쪽, 1이 오른쪽임.
 
 int chkAliveEnemy(void);
 void LevelClear(void);
 
 void gameOver(void);
 
+HWND hwnd;
+HDC hdc; //윈도우 핸들
 
 /*
 void start(void);

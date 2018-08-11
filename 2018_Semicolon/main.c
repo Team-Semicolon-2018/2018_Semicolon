@@ -19,6 +19,7 @@ void hidecursor() {
 }
 
 void init() {
+
 	system("title Hell, O world!");
 	system("mode con cols=80 lines=30");
 	hidecursor();
@@ -27,9 +28,11 @@ void init() {
 		Enemy[i].health = 0;
 		Enemy[i].posx = 0;
 		Enemy[i].posy = 0;
+		Enemy[i].level = 0;
 	}
 	Player.health = 3;
-
+	hwnd = GetForegroundWindow();
+	hdc = GetWindowDC(GetForegroundWindow());
 }
 
 int main() {
