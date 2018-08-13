@@ -10,6 +10,7 @@
 
 void drawPlayer(void)
 {
+	/*
 	for (int i = Player.posx*10-20; i <= Player.posx*10+20; i++) {
 		for (int j = Player.posy*15+100; j <= Player.posy*15+120; j++)
 		{
@@ -17,8 +18,8 @@ void drawPlayer(void)
 			SetPixel(hdc, i, j, RGB(0, 255, 255));     // 점을 찍는다. RGB( , , )값에 따라 색이 달라진다.
 		}
 	}
-	
-	//prn_xy("凸", Player.posx, Player.posy, CR_LGREEN, CR_BLACK, false);
+	*/
+	prn_xy("凸", Player.posx, Player.posy, CR_LGREEN, CR_BLACK, false);
 }
 
 

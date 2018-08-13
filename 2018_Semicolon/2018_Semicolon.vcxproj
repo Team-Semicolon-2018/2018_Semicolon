@@ -31,6 +31,7 @@
     <ClInclude Include="disclaimer.h" />
     <ClInclude Include="fucking_header.h" />
     <ClInclude Include="key_define.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\bullet.wav" />
@@ -41,6 +42,12 @@
     <Media Include="..\res\galaga_end_theme.wav" />
     <Media Include="..\res\NewPlayerInit.wav" />
     <Media Include="..\res\start.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="2018_Semicolon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\res\icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
