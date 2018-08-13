@@ -73,7 +73,7 @@ void control(void)
 		spawnEnemy(i, 20 + ((i - 10) * 3), 6, 2); //이등병 소환
 	}
 	for (int i = 20; i < 30; i++) {
-		spawnEnemy(i, 20 + ((i - 20) * 2), 8, 1); //맨앞에 졸병 소환
+		spawnEnemy(i, 20 + ((i - 20) * 3), 8, 1); //맨앞에 졸병 소환
 	}
 
 	Player.posx = 40;
