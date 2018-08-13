@@ -61,8 +61,7 @@ int chkAliveEnemy() {
 
 void control(void)
 {
-	int ps_tmp = 1;
-	int bl_tmp = 1;
+	
 	Round = 1;
 	
 	//플레이어 간격 반드시 3씩 띄울것
@@ -74,7 +73,7 @@ void control(void)
 		spawnEnemy(i, 20 + ((i - 10) * 3), 6, 2); //이등병 소환
 	}
 	for (int i = 20; i < 30; i++) {
-		spawnEnemy(i, 20 + ((i - 20) * 3), 8, 1); //맨앞에 졸병 소환
+		spawnEnemy(i, 20 + ((i - 20) * 2), 8, 1); //맨앞에 졸병 소환
 	}
 
 	Player.posx = 40;
@@ -143,11 +142,10 @@ void control(void)
 
 			if (Pl_Bullet[i].isused == true)
 			{
-				//if (bl_tmp == 1) {
+				
 					Pl_Bullet[i].posy--;
 					drawBullet(i);	
-				//}
-				//bl_tmp++;
+				
 			}
 		}
 
@@ -173,16 +171,14 @@ void control(void)
 		
 
 		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) & 0x8000)) && !(Player.posx < 3)) {
-			if (ps_tmp == 1) {
-				Player.posx--;
-			}
-			ps_tmp++;
+			
+			Player.posx--;
+			
 		}
 		if (((GetAsyncKeyState(KB_RIGHT) & 0x8000) || (GetAsyncKeyState(KB_d) & 0x8000) || (GetAsyncKeyState(KB_D) & 0x8000)) && !(Player.posx > 77)) {
-			if (ps_tmp == 1) {
-				Player.posx++;
-			}
-			ps_tmp++;
+			
+			Player.posx++;
+			
 			
 		}
 		if (GetAsyncKeyState(KB_SPACE) || (GetAsyncKeyState(KB_UP)) || (GetAsyncKeyState(KB_DOWN)) || (GetAsyncKeyState(KB_a)) || (GetAsyncKeyState(KB_s)) || (GetAsyncKeyState(KB_A)) || (GetAsyncKeyState(KB_S))) {
@@ -191,16 +187,13 @@ void control(void)
 			nowtime = nowtime_tmp;
 			
 
-			if (firetime <= (nowtime - 345)) {
+			if (firetime <= (nowtime - 300)) {
 				FuckthoseCvalnomeuEnemy();
 				firetime = nowtime;
 			}
 			
 		}
 			
-
-		if (ps_tmp > 6) ps_tmp = 1;
-		//if (bl_tmp > 2) bl_tmp = 1;
 		drawPlayer();
 		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK, false);
 		prn_xy(itoa(Player.health, itoa_tmp, 10), 76, 1, CR_LRED, CR_BLACK, false);
