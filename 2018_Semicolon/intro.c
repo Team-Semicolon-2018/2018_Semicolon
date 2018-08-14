@@ -50,6 +50,9 @@ void load() {
 		gotoxy(67, 15);
 		printf("]");
 		gotoxy(20, 17);
+		if (GetAsyncKeyState(KB_ESC) & 0x8000) {
+			debugScreen();
+		}
 		Sleep(2);
 		percent++;
 	}
@@ -95,8 +98,8 @@ void title() {
 
 
 	prn_xy("Press Any Key To Start...", 27, 21, CR_TURQ, CR_BLACK, false);
-	while (!kbhit()) {
-	}
+	getch();
+	fflush(stdin);
 	
 }
 

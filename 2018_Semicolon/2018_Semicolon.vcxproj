@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="ending.c" />
     <ClCompile Include="enemybulllet.c" />
+    <ClCompile Include="hidden.c" />
     <ClCompile Include="intro.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="playerbullet.c" />
@@ -51,7 +52,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{82493336-EB22-4467-828F-3B585FCCCBA3}</ProjectGuid>
+    <ProjectGuid>{C6EF5A12-F092-4220-87F1-6668F62AAB7E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My2018Semicolon</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>

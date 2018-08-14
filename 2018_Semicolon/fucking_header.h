@@ -80,6 +80,8 @@ void LevelClear(void);
 
 void gameOver(void);
 
+int debugScreen(void);
+
 HWND hwnd;
 HDC hdc; //윈도우 핸들
 

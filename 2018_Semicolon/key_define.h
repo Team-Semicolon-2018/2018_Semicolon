@@ -25,3 +25,5 @@
 #define KB_A 65
 #define KB_S 83
 #define KB_D 68
+
+#define KB_ESC 27
