@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <conio.h>
 #include <Windows.h>	 //헤더파일
 #include <time.h>
 #include "disclaimer.h"
 #include "key_define.h"
-#include "color_HELL_NOGADA.h"
-
+#include "colors.h"
 
 #include <mmsystem.h>
+
+#ifndef MAIN
+
 #pragma comment(lib, "winmm.lib") //사운드 관련 함수들
 
 #define _CRT_SECURE_NO_WARNINGS
 #pragma warning(disable:4996)
 
-
-
-
-typedef int bool;
+//typedef int bool;
 #define true 1
 #define false 0
 
@@ -30,6 +30,7 @@ typedef int bool;
 #define MAX_ENEMY 50
 #define MAX_BULLET 50
 
+#pragma once
 typedef struct _Bullet {
 	int posx;
 	int posy;
@@ -46,16 +47,21 @@ typedef struct _Jet {
 }Jet;
 
 
-Jet Enemy[(MAX_ENEMY+2)];
-Jet Player;
-Bullet Pl_Bullet[MAX_BULLET+2];
-Bullet En_Bullet[100];
-int Round;	//나중에 라운드에 따라 적 움직임 다양하게 만들거임. 물론 그러다가 내가 멘탈이 터져서 빡종할거같음.
+extern Jet Enemy[(MAX_ENEMY + 2)];
+extern Jet Player;
+extern Bullet Pl_Bullet[MAX_BULLET + 2];
+extern Bullet En_Bullet[100];
+extern int Round;	//나중에 라운드에 따라 적 움직임 다양하게 만들거임. 물론 그러다가 내가 멘탈이 터져서 빡종할거같음.
 
+extern HWND hwnd;
+extern HDC hdc; //윈도우 핸들
 
+#define MAIN
 
-void gotoxy(int x, int y);
-int prn_xy(char *print, int x, int y, int txtcolor, int bgcolor, bool enter);
+#endif
+
+void gotoxy(short x, short y);
+int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool enter);
 
 void init();
 void hidecursor();
@@ -82,12 +88,11 @@ void gameOver(void);
 
 int debugScreen(void);
 
-HWND hwnd;
-HDC hdc; //윈도우 핸들
 
-/*
-void start(void);
-void help(void);
-void EndScreen(void);
-*/
+
+		 /*
+		 void start(void);
+		 void help(void);
+		 void EndScreen(void);
+		 */
 

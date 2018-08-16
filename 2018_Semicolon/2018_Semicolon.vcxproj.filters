@@ -15,42 +15,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ending.c">
+    <ClCompile Include="ending.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="enemybulllet.c">
+    <ClCompile Include="enemybullet.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="intro.c">
+    <ClCompile Include="hidden.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="main.c">
+    <ClCompile Include="intro.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="playerbullet.c">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="print.c">
+    <ClCompile Include="playerbullet.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="hidden.c">
+    <ClCompile Include="print.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="color_HELL_NOGADA.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="disclaimer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="fucking_header.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="key_define.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="master.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="colors.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include "fucking_header.h"
+#include "master.h"
 
 int debugScreen() {
 	system("cls");

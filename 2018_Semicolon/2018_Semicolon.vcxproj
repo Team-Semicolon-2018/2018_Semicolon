@@ -19,19 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ending.c" />
-    <ClCompile Include="enemybulllet.c" />
-    <ClCompile Include="hidden.c" />
-    <ClCompile Include="intro.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="playerbullet.c" />
-    <ClCompile Include="print.c" />
+    <ClCompile Include="ending.cpp" />
+    <ClCompile Include="enemybullet.cpp" />
+    <ClCompile Include="hidden.cpp" />
+    <ClCompile Include="intro.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="playerbullet.cpp" />
+    <ClCompile Include="print.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="color_HELL_NOGADA.h" />
+    <ClInclude Include="colors.h" />
     <ClInclude Include="disclaimer.h" />
-    <ClInclude Include="fucking_header.h" />
     <ClInclude Include="key_define.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="master.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
