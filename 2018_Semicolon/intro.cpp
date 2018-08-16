@@ -1,9 +1,9 @@
-ï»¿#include "fucking_header.h"
+#include "master.h"
 
 void load() {
 	//80x30
 	gotoxy(0, 0);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //íšŒìƒ‰ìœ¼ë¡œ ë³€ê²½
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //È¸»öÀ¸·Î º¯°æ
 	printf("Loading Hell O world...                                                         ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 18);
 
@@ -13,12 +13,12 @@ void load() {
 		}
 		printf("\n");
 	}
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //íšŒìƒ‰ìœ¼ë¡œ ë³€ê²½
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //È¸»öÀ¸·Î º¯°æ
 	printf("[esc]: Debug mode                                                               ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 18);
 
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (0 << 4)); //ê²€ì€ë°•ìŠ¤ ê·¸ë¦¬ê¸°
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (0 << 4)); //°ËÀº¹Ú½º ±×¸®±â
 	gotoxy(12, 11);
 	for (int i = 11; i < 21; i++) {
 		for (int j = 0; j < 60; j++) printf(" ");
@@ -26,7 +26,7 @@ void load() {
 		gotoxy(12, i);
 	}
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 | (4 << 4)); //ë¹¨ê°„ë°•ìŠ¤ ê·¸ë¦¬ê¸°
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 | (4 << 4)); //»¡°£¹Ú½º ±×¸®±â
 	gotoxy(10, 10);
 	for (int i = 10; i < 20; i++) {
 		for (int j = 0; j < 60; j++) printf(" ");
@@ -43,7 +43,7 @@ void load() {
 
 		gotoxy(13, 15);
 		printf("[");
-		for (int i = 0; i <= (percent/2); i++) {
+		for (int i = 0; i <= (percent / 2); i++) {
 			printf("=");
 		}
 		printf(">");
@@ -56,9 +56,9 @@ void load() {
 		Sleep(2);
 		percent++;
 	}
-	
+
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7 | (0 << 4));
-	
+
 }
 
 void title() {
@@ -100,7 +100,7 @@ void title() {
 	prn_xy("Press Any Key To Start...", 27, 21, CR_TURQ, CR_BLACK, false);
 	getch();
 	fflush(stdin);
-	
+
 }
 
 void start() {

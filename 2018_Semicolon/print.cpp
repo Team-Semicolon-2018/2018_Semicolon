@@ -1,12 +1,12 @@
-#include "fucking_header.h"
+#include "master.h"
 
 
-void gotoxy(int x, int y) {
+void gotoxy(short x, short y) {
 	COORD Pos = { x - 1, y - 1 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
 
-int prn_xy(char *print, int x, int y, int txtcolor, int bgcolor, bool enter) {
+int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool enter) {
 
 	gotoxy(x, y);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), txtcolor | (bgcolor << 4));
