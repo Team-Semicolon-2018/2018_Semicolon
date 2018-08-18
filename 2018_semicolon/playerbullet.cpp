@@ -31,7 +31,6 @@ void drawBullet(int i)
 	prn_xy(BULLET, Pl_Bullet[i].posx, Pl_Bullet[i].posy + 1, CR_TURQ, CR_BLACK, false);
 }
 
-
 void FuckthoseCvalnomeuEnemy(void)
 {
 	int index = 0;
@@ -45,7 +44,7 @@ void FuckthoseCvalnomeuEnemy(void)
 	}
 
 	Pl_Bullet[index].isused = 1;
-	PlaySound(TEXT("..\\res\\bullet.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NOSTOP);
+	PlaySound(TEXT("..\\res\\bullet.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	Pl_Bullet[index].posx = Player.posx;
 	Pl_Bullet[index].posy = Player.posy;
 
@@ -100,6 +99,9 @@ void control(void)
 	Sleep(4000);
 
 
+
+	clock_t nowtime_tmp = clock();
+	long int nowtime = nowtime_tmp;
 	long int firetime = 0;
 
 
@@ -110,7 +112,7 @@ void control(void)
 		//continue ¾²¼À
 		for (int i = 0; i < MAX_BULLET; i++)
 		{
-			if (!Pl_Bullet[i].isused) {
+			if (Pl_Bullet[i].isused == false) {
 				continue;
 			}
 
@@ -129,21 +131,21 @@ void control(void)
 					Pl_Bullet[i].isused = 0;
 					Enemy[j].health--;
 					if (Enemy[j].level == 3 && Enemy[j].health == 1) {
-						PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NOSTOP);
+						PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					}
 					else if (Enemy[j].level == 3 && Enemy[j].health == 0) {
-						PlaySound(TEXT("..\\res\\enemy3die.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NOSTOP);
+						PlaySound(TEXT("..\\res\\enemy3die.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					}
 					else if (Enemy[j].level == 2) {
-						PlaySound(TEXT("..\\res\\enemyhit2.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NOSTOP);
+						PlaySound(TEXT("..\\res\\enemyhit2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					}
 					else if (Enemy[j].level == 1) {
-						PlaySound(TEXT("..\\res\\enemyhit1.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NOSTOP);
+						PlaySound(TEXT("..\\res\\enemyhit1.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					}
 				}
 			}
 
-			if (Pl_Bullet[i].isused)
+			if (Pl_Bullet[i].isused == true)
 			{
 
 				Pl_Bullet[i].posy--;
@@ -156,7 +158,7 @@ void control(void)
 
 		for (int i = 0; i < 100; i++)
 		{
-			if (!En_Bullet[i].isused)
+			if (En_Bullet[i].isused == false)
 				continue;
 
 			if (En_Bullet[i].posy >= 29)
@@ -174,20 +176,27 @@ void control(void)
 
 
 		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) & 0x8000)) && !(Player.posx < 3)) {
+
 			Player.posx--;
+
 		}
 		if (((GetAsyncKeyState(KB_RIGHT) & 0x8000) || (GetAsyncKeyState(KB_d) & 0x8000) || (GetAsyncKeyState(KB_D) & 0x8000)) && !(Player.posx > 77)) {
+
 			Player.posx++;
+
+
 		}
 		if (GetAsyncKeyState(KB_SPACE) || (GetAsyncKeyState(KB_UP)) || (GetAsyncKeyState(KB_DOWN)) || (GetAsyncKeyState(KB_a)) || (GetAsyncKeyState(KB_s)) || (GetAsyncKeyState(KB_A)) || (GetAsyncKeyState(KB_S))) {
 
-			const clock_t nowtime_tmp = clock();
-			const long int nowtime = nowtime_tmp;
+			nowtime_tmp = clock();
+			nowtime = nowtime_tmp;
 
-			if (firetime <= (nowtime - 400)) {
+
+			if (firetime <= (nowtime - 300)) {
 				FuckthoseCvalnomeuEnemy();
 				firetime = nowtime;
 			}
+
 		}
 
 		drawPlayer();
@@ -199,7 +208,7 @@ void control(void)
 		system("cls");
 
 		if (chkAliveEnemy() == MAX_ENEMY) {
-			levelClear();
+			LevelClear();
 		}
 		if (Player.health == 0) {
 			gameOver();
