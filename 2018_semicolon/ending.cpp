@@ -18,5 +18,10 @@ void gameOver() {
 	system("cls");
 	for (x = 0; x < 41; x++) {
 		prn_xy("GAME OVER", x, y, CR_LPURPLE, CR_LTURQ, true);
+		y++;
 	}
+	Sleep(3000);
+	system("pause");
+	main();
+	
 }

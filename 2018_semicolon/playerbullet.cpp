@@ -9,6 +9,7 @@
 #define BULLET "ㅄ"	//총알 헤더 만들어야할듯...
 */
 #define BULLET "┃"
+#define ENEMY_BULLET ";"
 
 void drawPlayer(void)
 {
@@ -29,6 +30,11 @@ void drawBullet(int i)
 {
 	prn_xy(BULLET, Pl_Bullet[i].posx, Pl_Bullet[i].posy, CR_TURQ, CR_BLACK, false);
 	prn_xy(BULLET, Pl_Bullet[i].posx, Pl_Bullet[i].posy + 1, CR_TURQ, CR_BLACK, false);
+}
+void drawEnemyBullet(int i)
+{
+	prn_xy(ENEMY_BULLET, En_Bullet[i].posx, En_Bullet[i].posy, CR_TURQ, CR_BLACK, false);
+	prn_xy(ENEMY_BULLET, En_Bullet[i].posx, En_Bullet[i].posy - 1, CR_TURQ, CR_BLACK, false);
 }
 
 void FuckthoseCvalnomeuEnemy(void)
@@ -101,9 +107,10 @@ void control(void)
 
 
 	clock_t nowtime_tmp = clock();
-	long int nowtime = nowtime_tmp;
+	long int nowtime;
 	long int firetime = 0;
 
+	int randtmp;
 
 	while (true)
 	{
@@ -152,27 +159,43 @@ void control(void)
 				drawBullet(i);
 
 			}
+			if (En_Bullet[i].isused == true) {
+				if (En_Bullet[i].posy >= 29 || (((En_Bullet[i].posx == Pl_Bullet[i].posx) || (En_Bullet[i].posx == Pl_Bullet[i].posx + 1) || (En_Bullet[i].posx == Pl_Bullet[i].posx - 1)) && ((En_Bullet[i].posy == Pl_Bullet[i].posy) || (En_Bullet[i].posy == Pl_Bullet[i].posy + 1) || (En_Bullet[i].posy == Pl_Bullet[i].posy - 1))))
+				{
+					En_Bullet[i].isused = 0;
+					Pl_Bullet[i].isused = 0;
+					//continue;
+				}
+			}
+			
 		}
 
 
 
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < MAX_ENEMY_BULLET; i++)
 		{
-			if (En_Bullet[i].isused == false)
+
+			if (En_Bullet[i].isused == false) //무조건 맨위에
 				continue;
 
-			if (En_Bullet[i].posy >= 29)
-			{
-				En_Bullet[i].isused = 0;
-				continue;
-			}
-
-			if (En_Bullet[i].posx == Player.posx && En_Bullet[i].posy == Player.posy)
+			
+			if (((En_Bullet[i].posx == Player.posx) || (En_Bullet[i].posx == Player.posx+1) || (En_Bullet[i].posx == Player.posx-1)) && ((En_Bullet[i].posy == Player.posy) || (En_Bullet[i].posy == Player.posy - 1))) //Enemybullet-> Player Hit!
 			{
 				En_Bullet[i].isused = 0;
 				Player.health--;
+				continue;
 			}
+
+
+			En_Bullet[i].posy++;
+			drawEnemyBullet(i);//수정
+
+
+
+			
+
 		}
+
 
 
 		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) & 0x8000)) && !(Player.posx < 3)) {
@@ -210,8 +233,26 @@ void control(void)
 		if (chkAliveEnemy() == MAX_ENEMY) {
 			LevelClear();
 		}
-		if (Player.health == 0) {
+		if (Player.health <= 0) {
 			gameOver();
+
+		}
+
+		srand(clock());
+		randtmp = rand();
+		if (randtmp % 13 == 0) {
+			if ((Enemy[(randtmp % MAX_ENEMY)].health != 0) && (randtmp % MAX_ENEMY) != 0) {
+
+				FuckThoseCvalnomeuPlayer((randtmp % MAX_ENEMY));
+
+
+				//puts("fuck");
+				//system("pause");
+				//printf("x:%d y:%d",En_Bullet[0].posx,En_Bullet[0].posy);
+				//system("pause");
+
+			}
+
 		}
 	}
 }

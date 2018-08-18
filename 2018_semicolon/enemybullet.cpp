@@ -76,27 +76,19 @@ void drawEnemy(void) {
 	}
 }
 
-void FuckThoseCvalnomeuPlayer(void)
+void FuckThoseCvalnomeuPlayer(int i)
 {
-	for (int i = 0; i < 20; i++)
-	{
-		if (Enemy[i].health == 0)
-			break;
-
-		else
+	if (Enemy[i].health != 0) {
+		for (int j = 0; j < MAX_ENEMY_BULLET; j++)
 		{
-			for (int j = 0; j < 100; j++)
-			{
-				if (En_Bullet[j].isused == 1)
-					break;
+			if (En_Bullet[j].isused == 0) {
 
-				else
-				{
-					En_Bullet[j].isused = 1;
-					En_Bullet[j].posx = Enemy[i].posx;
-					En_Bullet[j].posy = Enemy[i].posy;
-				}
+				En_Bullet[j].isused = true;
+				En_Bullet[j].posx = Enemy[i].posx;
+				En_Bullet[j].posy = Enemy[i].posy;
+				break;
 			}
 		}
 	}
+	
 }
