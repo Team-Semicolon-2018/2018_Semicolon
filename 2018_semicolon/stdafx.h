@@ -6,7 +6,7 @@
 #include <Windows.h>	 //헤더파일
 #include <time.h>
 #include "disclaimer.h"
-#include "key_define.h"
+#include "keydef.h"
 #include "colors.h"
 
 #include <mmsystem.h>
