@@ -2,12 +2,12 @@
 #include "main.h"
 
 
-void gotoxy(short x, short y) {
+void gotoxy(const short x, const short y) {
 	COORD Pos = { x - 1, y - 1 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
 
-int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool enter) {
+int prn_xy(const char print[], const int x, const int y, const int txtcolor, const int bgcolor, const bool enter) {
 
 	gotoxy(x, y);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), txtcolor | (bgcolor << 4));

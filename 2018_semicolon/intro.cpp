@@ -4,7 +4,7 @@
 void load() {
 	//80x30
 	gotoxy(0, 0);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //회색으로 변경
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | 7 << 4); //회색으로 변경
 	printf("Loading Hell O world...                                                         ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 18);
 
@@ -14,12 +14,12 @@ void load() {
 		}
 		printf("\n");
 	}
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (7 << 4)); //회색으로 변경
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | 7 << 4); //회색으로 변경
 	printf("[esc]: Debug mode                                                               ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 18);
 
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0 | (0 << 4)); //검은박스 그리기
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0); //검은박스 그리기
 	gotoxy(12, 11);
 	for (int i = 11; i < 21; i++) {
 		for (int j = 0; j < 60; j++) printf(" ");
@@ -27,7 +27,7 @@ void load() {
 		gotoxy(12, i);
 	}
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 | (4 << 4)); //빨간박스 그리기
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 | 4 << 4); //빨간박스 그리기
 	gotoxy(10, 10);
 	for (int i = 10; i < 20; i++) {
 		for (int j = 0; j < 60; j++) printf(" ");
@@ -44,7 +44,7 @@ void load() {
 
 		gotoxy(13, 15);
 		printf("[");
-		for (int i = 0; i <= (percent / 2); i++) {
+		for (int i = 0; i <= percent / 2; i++) {
 			printf("=");
 		}
 		printf(">");
@@ -58,7 +58,7 @@ void load() {
 		percent++;
 	}
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7 | (0 << 4));
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7 | 0 << 4);
 
 }
 
