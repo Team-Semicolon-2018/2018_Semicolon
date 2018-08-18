@@ -1,4 +1,5 @@
-#include "master.h"
+#include "stdafx.h"
+#include "main.h"
 
 void load() {
 	//80x30

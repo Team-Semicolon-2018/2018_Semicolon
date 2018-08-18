@@ -50,10 +50,10 @@
     <ClInclude Include="main.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="master.h">
+    <ClInclude Include="colors.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="colors.h">
+    <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

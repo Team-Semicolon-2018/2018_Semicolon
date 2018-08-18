@@ -1,4 +1,5 @@
-#include "master.h"
+#include "stdafx.h"
+#include "main.h"
 /*
 #define BULLET ";"	//총알을 세미콜론으로 바꾸면 좀 구림. 적군이 쏘는 총알을 이걸로 바꿔야겠음.
 #define BULLET "⊙"

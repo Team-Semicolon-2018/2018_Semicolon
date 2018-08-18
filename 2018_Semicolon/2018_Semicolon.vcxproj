@@ -32,8 +32,8 @@
     <ClInclude Include="disclaimer.h" />
     <ClInclude Include="key_define.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="master.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\bullet.wav" />
@@ -150,6 +150,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

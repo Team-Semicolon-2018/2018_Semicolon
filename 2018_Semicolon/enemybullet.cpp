@@ -1,4 +1,5 @@
-#include "master.h"
+#include "stdafx.h"
+#include "main.h"
 
 void spawnEnemy(int index_of_Enemy, int x, int y, int level) {
 	//if (isRight) {

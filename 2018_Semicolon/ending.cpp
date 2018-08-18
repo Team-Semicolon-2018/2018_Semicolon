@@ -1,4 +1,5 @@
-#include "master.h"
+#include "stdafx.h"
+#include "main.h"
 
 void LevelClear() {
 
@@ -12,10 +13,10 @@ void LevelClear() {
 
 
 void gameOver() {
-	int x = 0;
 	int y = 15;
 	system("cls");
-	for (x = 0; x < 41; x++) {
+	for (int x = 0; x < 41; x++)
+	{
 		prn_xy("GAME OVER", x, y, CR_LPURPLE, CR_LTURQ, true);
 	}
 }

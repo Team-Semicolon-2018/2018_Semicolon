@@ -8,7 +8,8 @@ FUCKYOU!!!
 -(c) 2018 Semicolon team;
 */
 
-#include "master.h"
+#include "stdafx.h"
+#include "main.h"
 
 Jet Enemy[(MAX_ENEMY + 2)];
 Jet Player;

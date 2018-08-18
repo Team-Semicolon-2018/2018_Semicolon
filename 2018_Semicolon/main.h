@@ -1,21 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <conio.h>
-#include <Windows.h>	 //헤더파일
-#include <time.h>
-#include "disclaimer.h"
-#include "key_define.h"
-#include "colors.h"
-
-#include <mmsystem.h>
+#include "stdafx.h"
 
 #ifndef MAIN
-
-#pragma comment(lib, "winmm.lib") //사운드 관련 함수들
-
-#define _CRT_SECURE_NO_WARNINGS
-#pragma warning(disable:4996)
 
 //typedef int bool;
 #define true 1
@@ -90,9 +75,9 @@ int debugScreen(void);
 
 
 
-		 /*
-		 void start(void);
-		 void help(void);
-		 void EndScreen(void);
-		 */
+ /*
+ void start(void);
+ void help(void);
+ void EndScreen(void);
+ */
 
