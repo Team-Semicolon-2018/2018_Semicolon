@@ -159,14 +159,19 @@ void control(void)
 				drawBullet(i);
 
 			}
+			
 			if (En_Bullet[i].isused == true) {
-				if (En_Bullet[i].posy >= 29 || (((En_Bullet[i].posx == Pl_Bullet[i].posx) || (En_Bullet[i].posx == Pl_Bullet[i].posx + 1) || (En_Bullet[i].posx == Pl_Bullet[i].posx - 1)) && ((En_Bullet[i].posy == Pl_Bullet[i].posy) || (En_Bullet[i].posy == Pl_Bullet[i].posy + 1) || (En_Bullet[i].posy == Pl_Bullet[i].posy - 1))))
-				{
-					En_Bullet[i].isused = 0;
-					Pl_Bullet[i].isused = 0;
-					//continue;
+				for(int j=0; j<MAX_ENEMY_BULLET; j++) {
+					if ((((En_Bullet[j].posx == Pl_Bullet[i].posx) || (En_Bullet[j].posx == Pl_Bullet[i].posx + 1) || (En_Bullet[j].posx == Pl_Bullet[i].posx - 1)) && ((En_Bullet[j].posy == Pl_Bullet[i].posy) || (En_Bullet[j].posy == Pl_Bullet[i].posy + 1) || (En_Bullet[j].posy == Pl_Bullet[i].posy - 1))))
+					{
+						En_Bullet[i].isused = 0;
+						Pl_Bullet[i].isused = 0;
+						//continue;
+					}
 				}
+				
 			}
+			
 			
 		}
 
@@ -178,7 +183,10 @@ void control(void)
 			if (En_Bullet[i].isused == false) //무조건 맨위에
 				continue;
 
-			
+			if (En_Bullet[i].posy > 26) {
+				En_Bullet[i].isused = false;
+			}
+
 			if (((En_Bullet[i].posx == Player.posx) || (En_Bullet[i].posx == Player.posx+1) || (En_Bullet[i].posx == Player.posx-1)) && ((En_Bullet[i].posy == Player.posy) || (En_Bullet[i].posy == Player.posy - 1))) //Enemybullet-> Player Hit!
 			{
 				En_Bullet[i].isused = 0;
@@ -186,11 +194,14 @@ void control(void)
 				continue;
 			}
 
-
-			En_Bullet[i].posy++;
-			drawEnemyBullet(i);//수정
-
-
+			
+			if (En_Bullet[i].isused == true) {
+				En_Bullet[i].posy++;
+				drawEnemyBullet(i);//수정
+			}
+			
+			
+			//drawEnemyBullet(i);//수정
 
 			
 
