@@ -9,6 +9,7 @@
 //#define false 0
 
 #define DEF_RET_VAL 0 //디폴트 리턴 밸류
+#define ERR_RET_VAL 1 //에러 발생 시 리턴 밸류 핸들링.
 //#define PROGRAM_VERSION "0.8.2_r4" //0.month.day_revision
 
 #define DEFAULT_TXT_COLOR CR_WHITE 
@@ -79,6 +80,27 @@ void LevelClear(void);
 void gameOver(void);
 
 int debugScreen(void);
+
+int writeRanking(void);
+
+
+
+/*start*/
+//void SetColor(int num);
+void Flush_buffer(void);
+void AddRank(int time, int score);
+void RankReset(void);
+void RankSort(void);
+void FileLoad(void);
+void FileSave(void);
+void FrameDraw(void);
+void RankDraw(void);
+
+
+
+
+
+
 
 
 

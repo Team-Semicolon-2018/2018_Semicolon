@@ -6,5 +6,7 @@ int debugScreen() {
 	while (1) {
 
 		puts("Debug Screen!");
+		system("pause");
+		gameOver();
 	}
 }

@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2018_Semicolon.cpp" />
+    <ClCompile Include="ctrlRank.cpp" />
     <ClCompile Include="ending.cpp" />
     <ClCompile Include="enemybullet.cpp" />
     <ClCompile Include="hidden.cpp" />
@@ -175,6 +176,16 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\res\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\res\bullet.wav" />
+    <Media Include="..\res\enemy3die.wav" />
+    <Media Include="..\res\enemyhit1.wav" />
+    <Media Include="..\res\enemyhit2.wav" />
+    <Media Include="..\res\enemyhit3.wav" />
+    <Media Include="..\res\NewPlayerInit.wav" />
+    <Media Include="..\res\start.wav" />
+    <Media Include="..\res\_galaga_end_theme.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
