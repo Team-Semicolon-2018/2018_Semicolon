@@ -11,19 +11,6 @@
 
 
 
-int writeRanking(void) {
-	
-
-
-	if(false) {
-		return ERR_RET_VAL;
-	}
-
-
-	return DEF_RET_VAL;
-}
-
-
 struct info {
 	char name[10];
 	int time;
@@ -137,27 +124,7 @@ void FileSave(void)
 }
 
 
-void FrameDraw(void)
-{
-	//int i;
-	//const int right = 0, left = 78;
-	//system("cls");
-	//gotoxy(0, 0);
-	//printf("≡式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式≡");
 
-	//for (i = 1; i<39; i++) {
-	//	gotoxy(right, i);
-	//	printf("弛");
-	//}
-
-	//for (i = 1; i<39; i++) {
-	//	gotoxy(left, i);
-	//	printf("弛");
-	//}
-
-	//gotoxy(0, 38);
-	//printf("≡式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式≡");
-}
 
 
 void RankDraw(bool enternick)
@@ -165,7 +132,7 @@ void RankDraw(bool enternick)
 	system("mode con cols=80 lines=40");
 	const int x = 16;
 	int i;
-	FrameDraw();
+
 	FileLoad();
 	RankSort();
 

@@ -89,7 +89,6 @@ void gameOver(int time, int score);
 
 int debugScreen(void);
 
-int writeRanking(void);
 
 
 
@@ -101,7 +100,7 @@ void RankReset(void);
 void RankSort(void);
 void FileLoad(void);
 void FileSave(void);
-void FrameDraw(void);
+
 void RankDraw(bool enternick);
 
 
