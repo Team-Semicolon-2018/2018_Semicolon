@@ -7,6 +7,6 @@ int debugScreen() {
 
 		puts("Debug Screen!");
 		system("pause");
-		gameOver();
+		gameOver(3,3);
 	}
 }

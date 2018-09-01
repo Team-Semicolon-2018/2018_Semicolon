@@ -69,6 +69,9 @@ int chkAliveEnemy() {
 
 void control(void)
 {
+	clock_t begin_t = clock();
+
+	int score = 0;
 
 	Round = 1;
 
@@ -139,15 +142,19 @@ void control(void)
 					Enemy[j].health--;
 					if (Enemy[j].level == 3 && Enemy[j].health == 1) {
 						PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						
 					}
 					else if (Enemy[j].level == 3 && Enemy[j].health == 0) {
 						PlaySound(TEXT("..\\res\\enemy3die.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						score += 3;
 					}
 					else if (Enemy[j].level == 2) {
 						PlaySound(TEXT("..\\res\\enemyhit2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						score += 2;
 					}
 					else if (Enemy[j].level == 1) {
 						PlaySound(TEXT("..\\res\\enemyhit1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						score++;
 					}
 				}
 			}
@@ -166,6 +173,7 @@ void control(void)
 					{
 						En_Bullet[i].isused = 0;
 						Pl_Bullet[i].isused = 0;
+						score++;
 						//continue;
 					}
 				}
@@ -238,6 +246,11 @@ void control(void)
 		prn_xy(itoa(Player.health, itoa_tmp, 10), 76, 1, CR_LRED, CR_BLACK, false);
 		prn_xy("Alive Enemys: ", 50, 1, CR_LRED, CR_BLACK, false);
 		prn_xy(itoa(50 - chkAliveEnemy(), itoa_tmp, 10), 64, 1, CR_LRED, CR_BLACK, false);
+		prn_xy("Score: ", 39, 1, CR_TURQ, CR_BLACK, false);
+		prn_xy(itoa(score, itoa_tmp, 10), 46, 1, CR_LRED, CR_BLACK, false);
+		prn_xy("Time: ", 20, 1, CR_TURQ, CR_BLACK, false);
+		clock_t now_t = clock();
+		prn_xy(itoa((now_t - begin_t)/100, itoa_tmp, 10), 26, 1, CR_LRED, CR_BLACK, false);
 
 		system("cls");
 
@@ -245,7 +258,13 @@ void control(void)
 			LevelClear();
 		}
 		if (Player.health <= 0) {
-			gameOver();
+			// 시간 잴 코드
+
+			clock_t end_t = clock();
+
+			long msec = end_t - begin_t; // 단위는 milliseconds, 나누기 1000 하면 seconds
+
+			gameOver((int)msec / 100, score); //time, score
 
 		}
 

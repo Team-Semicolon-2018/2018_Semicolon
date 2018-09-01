@@ -46,9 +46,17 @@ extern int Round;	//나중에 라운드에 따라 적 움직임 다양하게 만들거임. 물론 그러�
 extern HWND hwnd;
 extern HDC hdc; //윈도우 핸들
 
+extern System* _system;
+extern Channel* _channel;
+extern Sound* _sound;
+
+
+
 #define MAIN
 
 #endif
+
+
 
 int main(); //어이쿠 실수
 void gotoxy(short x, short y);
@@ -77,7 +85,7 @@ void spawnEnemy(int index_of_Enemy, int x, int y, int level);	//총알 만드는거랑 
 int chkAliveEnemy(void);
 void LevelClear(void);
 
-void gameOver(void);
+void gameOver(int time, int score);
 
 int debugScreen(void);
 
@@ -94,7 +102,7 @@ void RankSort(void);
 void FileLoad(void);
 void FileSave(void);
 void FrameDraw(void);
-void RankDraw(void);
+void RankDraw(bool enternick);
 
 
 
@@ -109,4 +117,8 @@ void start(void);
 void help(void);
 void EndScreen(void);
 */
+
+
+
+
 

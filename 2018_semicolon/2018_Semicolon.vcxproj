@@ -149,6 +149,13 @@
   <ItemGroup>
     <ClInclude Include="colors.h" />
     <ClInclude Include="disclaimer.h" />
+    <ClInclude Include="inc\fmod.h" />
+    <ClInclude Include="inc\fmod.hpp" />
+    <ClInclude Include="inc\fmod_codec.h" />
+    <ClInclude Include="inc\fmod_dsp.h" />
+    <ClInclude Include="inc\fmod_errors.h" />
+    <ClInclude Include="inc\fmod_memoryinfo.h" />
+    <ClInclude Include="inc\fmod_output.h" />
     <ClInclude Include="keydef.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
@@ -178,6 +185,7 @@
     <Image Include="..\res\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="..\res\bgm.wav" />
     <Media Include="..\res\bullet.wav" />
     <Media Include="..\res\enemy3die.wav" />
     <Media Include="..\res\enemyhit1.wav" />
