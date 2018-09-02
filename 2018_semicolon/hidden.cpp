@@ -4,10 +4,5 @@
 int debugScreen() {
 	system("cls");
 	system("pause");
-
-
-	while (true) {
-
-		puts("debug screen!");
-	}
+	exit(ERR_RET_VAL);
 }

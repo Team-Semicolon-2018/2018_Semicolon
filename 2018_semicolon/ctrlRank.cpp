@@ -29,7 +29,7 @@ void Flush_buffer(void)
 void AddRank(int time, int score)
 {
 	RankDraw(true); //반드시 먼저 호출
-	system("pause");
+	//system("pause");
 	system("cls");
 	Flush_buffer();
 	gotoxy(33, 13);
