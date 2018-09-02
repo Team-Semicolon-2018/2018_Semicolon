@@ -1,9 +1,9 @@
 /*
- * Original Source File by lghlove0509, Modded by Computerpark.
- * See Here: https://m.blog.naver.com/PostView.nhn?blogId=lghlove0509&logNo=220815708116&proxyReferer=http%3A%2F%2Fblog.naver.com%2FPostView.nhn%3FblogId%3Dlghlove0509%26logNo%3D220814680325
- * Big Thx to lghlove0509
- * Luv Your Code!
- */
+* Original Source File by lghlove0509, Modded by Computerpark.
+* See Here: https://m.blog.naver.com/PostView.nhn?blogId=lghlove0509&logNo=220815708116&proxyReferer=http%3A%2F%2Fblog.naver.com%2FPostView.nhn%3FblogId%3Dlghlove0509%26logNo%3D220814680325
+* Big Thx to lghlove0509
+* Luv Your Code!
+*/
 
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ void AddRank(int time, int score)
 	gotoxy(33, 13);
 	printf("닉네임:");
 	gotoxy(41, 13);
-	scanf("%s",rank[10].name);
+	scanf("%s", rank[10].name);
 	//fgets(rank[10].name, 10, stdin);
 	//system("pause");
 	rank[10].time = time;
@@ -65,7 +65,7 @@ void RankSort(void) //ranksort함수는 셋 이상이 입력된 상태에서 호출하세요 [컴터�
 	{
 		for (j = 0; j<11; j++)
 		{
-			if(rank[j].time > 100000) {
+			if (rank[j].time > 100000) {
 				rank[j].score = 0;
 				rank[j].time = 0;
 				rank[j].name[10] = NULL;
@@ -76,8 +76,8 @@ void RankSort(void) //ranksort함수는 셋 이상이 입력된 상태에서 호출하세요 [컴터�
 				rank[j] = rank[j + 1];
 				rank[j + 1] = temp;
 			}
-			if (rank[j].score == rank[j+1].score) {
-				if(rank[j].time > rank[j+1].time) {
+			if (rank[j].score == rank[j + 1].score) {
+				if (rank[j].time > rank[j + 1].time) {
 					temp = rank[j];
 					rank[j] = rank[j + 1];
 					rank[j + 1] = temp;
@@ -142,8 +142,8 @@ void RankDraw(bool enternick)
 	FileLoad();
 	RankSort();
 
-	
-	if(enternick==false) {
+
+	if (enternick == false) {
 		prn_xy("ESC : 나가기", 50, 38, CR_WHITE, CR_BLACK, false);
 		prn_xy("DELETE : 랭킹 초기화", 10, 38, CR_RED, CR_BLACK, false);
 		prn_xy("[랭킹]", 21, 2, CR_TURQ, CR_BLACK, false);
@@ -155,7 +155,7 @@ void RankDraw(bool enternick)
 			gotoxy(x + 8, (i + 1) * 3 + 1);
 			printf("닉네임: %s", rank[i].name);
 			gotoxy(x + 26, (i + 1) * 3 + 1);
-			printf("시간: %.1f초", (float)rank[i].time/10);
+			printf("시간: %.1f초", (float)rank[i].time / 10);
 			gotoxy(x + 40, (i + 1) * 3 + 1);
 			printf("점수: %d", rank[i].score);
 			//SetColor(7);
@@ -175,6 +175,5 @@ void RankDraw(bool enternick)
 
 		system("cls");
 	}
-	
-}
 
+}

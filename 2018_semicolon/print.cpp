@@ -3,11 +3,12 @@
 
 
 void gotoxy(short x, short y) {
-	COORD Pos = { x - 1, y - 1 };
+	COORD Pos = {x - 1, y - 1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
 
-int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool enter) { //bool enter의 디푤트 벨류. 빼먹어도 된다
+int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool enter) {
+	//bool enter의 디푤트 벨류. 빼먹어도 된다
 	gotoxy(x, y);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), txtcolor | (bgcolor << 4));
 
@@ -19,7 +20,8 @@ int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool ent
 	return DEF_RET_VAL;
 }
 
-int prn_xy(int print, int x, int y, int txtcolor, int bgcolor, bool enter) { //cpp에서는 매개변수의 형식이 다르면 이름이 같은 함수를 허용한다. 편하게 int로 호출하자
+int prn_xy(int print, int x, int y, int txtcolor, int bgcolor, bool enter) {
+	//cpp에서는 매개변수의 형식이 다르면 이름이 같은 함수를 허용한다. 편하게 int로 호출하자
 
 	gotoxy(x, y);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), txtcolor | (bgcolor << 4));

@@ -11,8 +11,7 @@
 #define BULLET "┃"
 #define ENEMY_BULLET ";"
 
-void drawPlayer(void)
-{
+void drawPlayer(void) {
 	/*
 	for (int i = Player.posx*10-20; i <= Player.posx*10+20; i++) {
 	for (int j = Player.posy*15+100; j <= Player.posy*15+120; j++)
@@ -26,30 +25,26 @@ void drawPlayer(void)
 }
 
 
-void drawBullet(int i)
-{
+void drawBullet(int i) {
 	prn_xy(BULLET, Pl_Bullet[i].posx, Pl_Bullet[i].posy, CR_TURQ, CR_BLACK, false);
 	prn_xy(BULLET, Pl_Bullet[i].posx, Pl_Bullet[i].posy + 1, CR_TURQ, CR_BLACK, false);
 }
-void drawEnemyBullet(int i)
-{
+
+void drawEnemyBullet(int i) {
 	prn_xy(ENEMY_BULLET, En_Bullet[i].posx, En_Bullet[i].posy, CR_TURQ, CR_BLACK, false);
 	prn_xy(ENEMY_BULLET, En_Bullet[i].posx, En_Bullet[i].posy - 1, CR_TURQ, CR_BLACK, false);
 }
 
-void FuckthoseCvalnomeuEnemy(void)
-{
+void FuckthoseCvalnomeuEnemy(void) {
 	int index = 0;
-	for (int i = 0; i < MAX_BULLET; i++)
-	{
-		if (Pl_Bullet[i].isused == 0)
-		{
+	for (int i = 0; i < MAX_BULLET; i++) {
+		if (Pl_Bullet[i].isused == 0) {
 			index = i;
 			break;
 		}
 	}
 
-	Pl_Bullet[index].isused = 1;
+	Pl_Bullet[index].isused = true;
 	Sound_Play(S_PL_BULLET);
 	//PlaySound(TEXT("..\\res\\bullet.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	Pl_Bullet[index].posx = Player.posx;
@@ -69,53 +64,47 @@ int chkAliveEnemy() {
 }
 
 
-
-DWORD WINAPI musicthread(LPVOID lpParameter)
-{
+DWORD WINAPI musicthread(LPVOID lpParameter) {
 	//thread_data *td = (thread_data*)lpParameter;
 	//std::cout << "Success! thread id = " << td->m_id << std::endl;
-	while(1) {
+	while (true) {
 		SoundUpdate();
 		//Sleep(33);
 	}
-	return 0;
 }
-DWORD WINAPI moveenemy(LPVOID lpParameter)
-{
+
+DWORD WINAPI moveenemy(LPVOID lpParameter) {
 	//thread_data *td = (thread_data*)lpParameter;
 	//std::cout << "Success! thread id = " << td->m_id << std::endl;
-	while (1) {
+	while (true) {
 		for (int i = 0; i < MAX_ENEMY; i++) {
 			Enemy[i].posy++;
 		}
 		Sleep(1000);
 
-		for(int j=0;j<3;j++) {
+		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < MAX_ENEMY; i++) {
 				Enemy[i].posx--;
 			}
 			Sleep(1000);
 		}
-		
-		for(int j=0;j<3;j++) {
+
+		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < MAX_ENEMY; i++) {
 				Enemy[i].posx++;
 			}
 			Sleep(1000);
 		}
-		
-		
-		
+
+
 	}
-	return 0;
 }
 
-void control(void)
-{
+void control(void) {
 
 
-	CreateThread(NULL, 0, musicthread, NULL, 0, 0);
-	CreateThread(NULL, 0, moveenemy, NULL, 0, 0);
+	CreateThread(nullptr, 0, musicthread, nullptr, 0, nullptr);
+	CreateThread(nullptr, 0, moveenemy, nullptr, 0, nullptr);
 
 	clock_t begin_t = clock();
 
@@ -138,12 +127,11 @@ void control(void)
 
 	Player.posx = 40;
 	Player.posy = 26;
-	char itoa_tmp[10] = { 0, };
 	//Ready
 	system("cls");
 	StopSound();
-	PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
-	PlaySound(TEXT("..\\res\\NewPlayerInit.wav"), NULL,  SND_LOOP | SND_ASYNC);
+	PlaySound(nullptr, nullptr, SND_FILENAME | SND_ASYNC);
+	PlaySound(TEXT("..\\res\\NewPlayerInit.wav"), nullptr, SND_LOOP | SND_ASYNC);
 	//Sound_Play(S_START);
 
 	drawEnemy();
@@ -158,43 +146,39 @@ void control(void)
 	prn_xy("Ready", 27, 17, CR_RED, CR_BLACK, false);
 	Sleep(4000);
 
-	PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
+	PlaySound(nullptr, nullptr, SND_FILENAME | SND_ASYNC);
 
 
-	clock_t nowtime_tmp = clock();
+	clock_t nowtime_tmp;
 	long int nowtime;
 	long int firetime = 0;
 
 	int randtmp;
 	VolumeSetSound();
 	Sound_Play(S_BGM);
-	while (true)
-	{
-		
+	while (true) {
+
 		//VolumeSetSound();
 		drawEnemy();
 
 		//continue 쓰셈
-		for (int i = 0; i < MAX_BULLET; i++)
-		{
+		for (int i = 0; i < MAX_BULLET; i++) {
 
 			if (Pl_Bullet[i].isused == false) {
 				continue;
 			}
 
-			if (Pl_Bullet[i].posy < 1)
-			{
-				Pl_Bullet[i].isused = 0;
+			if (Pl_Bullet[i].posy < 1) {
+				Pl_Bullet[i].isused = false;
 				continue;
 			}
 
-			for (int j = 0; j < MAX_ENEMY; j++)
-			{
+			for (int j = 0; j < MAX_ENEMY; j++) {
 				if (Enemy[j].health == 0)
 					continue;
-				if (((Pl_Bullet[i].posx == Enemy[j].posx) || (Pl_Bullet[i].posx == Enemy[j].posx + 1) || (Pl_Bullet[i].posx == Enemy[j].posx - 1)) && (Pl_Bullet[i].posy == Enemy[j].posy))
-				{
-					Pl_Bullet[i].isused = 0;
+				if (((Pl_Bullet[i].posx == Enemy[j].posx) || (Pl_Bullet[i].posx == Enemy[j].posx + 1) || (Pl_Bullet[i].
+					posx == Enemy[j].posx - 1)) && (Pl_Bullet[i].posy == Enemy[j].posy)) {
+					Pl_Bullet[i].isused = false;
 					Enemy[j].health--;
 					if (Enemy[j].level == 3 && Enemy[j].health == 1) {
 						//PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -218,34 +202,32 @@ void control(void)
 				}
 			}
 
-			if (Pl_Bullet[i].isused == true)
-			{
+			if (Pl_Bullet[i].isused == true) {
 
 				Pl_Bullet[i].posy--;
 				drawBullet(i);
 
 			}
-			
+
 			if (En_Bullet[i].isused == true) {
-				for(int j=0; j<MAX_ENEMY_BULLET; j++) {
-					if ((((En_Bullet[j].posx == Pl_Bullet[i].posx) || (En_Bullet[j].posx == Pl_Bullet[i].posx + 1) || (En_Bullet[j].posx == Pl_Bullet[i].posx - 1)) && ((En_Bullet[j].posy == Pl_Bullet[i].posy) || (En_Bullet[j].posy == Pl_Bullet[i].posy + 1) || (En_Bullet[j].posy == Pl_Bullet[i].posy - 1))))
-					{
-						En_Bullet[i].isused = 0;
-						Pl_Bullet[i].isused = 0;
+				for (int j = 0; j < MAX_ENEMY_BULLET; j++) {
+					if ((((En_Bullet[j].posx == Pl_Bullet[i].posx) || (En_Bullet[j].posx == Pl_Bullet[i].posx + 1) || (
+						En_Bullet[j].posx == Pl_Bullet[i].posx - 1)) && ((En_Bullet[j].posy == Pl_Bullet[i].posy) || (
+						En_Bullet[j].posy == Pl_Bullet[i].posy + 1) || (En_Bullet[j].posy == Pl_Bullet[i].posy - 1)))) {
+						En_Bullet[i].isused = false;
+						Pl_Bullet[i].isused = false;
 						score++;
 						//continue;
 					}
 				}
-				
+
 			}
-			
-			
+
+
 		}
 
 
-
-		for (int i = 0; i < MAX_ENEMY_BULLET; i++)
-		{
+		for (int i = 0; i < MAX_ENEMY_BULLET; i++) {
 
 			if (En_Bullet[i].isused == false) //무조건 맨위에
 				continue;
@@ -254,57 +236,65 @@ void control(void)
 				En_Bullet[i].isused = false;
 			}
 
-			if (((En_Bullet[i].posx == Player.posx) || (En_Bullet[i].posx == Player.posx+1) || (En_Bullet[i].posx == Player.posx-1)) && ((En_Bullet[i].posy == Player.posy) || (En_Bullet[i].posy == Player.posy - 1))) //Enemybullet-> Player Hit!
+			if (((En_Bullet[i].posx == Player.posx) || (En_Bullet[i].posx == Player.posx + 1) || (En_Bullet[i].posx ==
+				Player.posx - 1)) && ((En_Bullet[i].posy == Player.posy) || (En_Bullet[i].posy == Player.posy - 1)))
+				//Enemybullet-> Player Hit!
 			{
-				En_Bullet[i].isused = 0;
+				En_Bullet[i].isused = false;
 				Player.health--;
 				continue;
 			}
 
-			
+
 			if (En_Bullet[i].isused == true) {
 				En_Bullet[i].posy++;
-				drawEnemyBullet(i);//수정
+				drawEnemyBullet(i); //수정
 			}
-			
-			
+
+
 			//drawEnemyBullet(i);//수정
 
-			
 
 		}
 
 
-
-		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) & 0x8000)) && !(Player.posx < 3)) {
-			if(tmpmvl==0) { //slow down
+		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) &
+			0x8000)) && !(Player.posx < 3)) {
+			if (tmpmvl == 0) {
+				//slow down
 				Player.posx--;
 				tmpmvl++;
-			}else {
+			}
+			else {
 				tmpmvl++;
-				if(tmpmvl>3) {
+				if (tmpmvl > 3) {
 					tmpmvl = 0;
 				}
 			}
-			
+
 
 		}
-		if (((GetAsyncKeyState(KB_RIGHT) & 0x8000) || (GetAsyncKeyState(KB_d) & 0x8000) || (GetAsyncKeyState(KB_D) & 0x8000)) && !(Player.posx > 77)) {
+		if (((GetAsyncKeyState(KB_RIGHT) & 0x8000) || (GetAsyncKeyState(KB_d) & 0x8000) || (GetAsyncKeyState(KB_D) &
+			0x8000)) && !(Player.posx > 77)) {
 
 
-			if (tmpmvr == 0) {//slow down
+			if (tmpmvr == 0) {
+				//slow down
 				Player.posx++;
 				tmpmvr++;
 			}
 			else {
 				tmpmvr++;
-				if (tmpmvr>3) {
+				if (tmpmvr > 3) {
 					tmpmvr = 0;
 				}
 			}
 
 		}
-		if (GetAsyncKeyState(KB_SPACE) || (GetAsyncKeyState(KB_UP)) || (GetAsyncKeyState(KB_DOWN)) || (GetAsyncKeyState(KB_a)) || (GetAsyncKeyState(KB_s)) || (GetAsyncKeyState(KB_A)) || (GetAsyncKeyState(KB_S))) {
+		if (GetAsyncKeyState(KB_SPACE) || (GetAsyncKeyState(KB_UP)) || (GetAsyncKeyState(KB_DOWN)) || (
+				GetAsyncKeyState(KB_a)) || (GetAsyncKeyState(KB_s)) || (GetAsyncKeyState(KB_A)) || (
+				GetAsyncKeyState(KB_S))
+		) {
 
 			nowtime_tmp = clock();
 			nowtime = nowtime_tmp;
@@ -318,17 +308,16 @@ void control(void)
 		}
 
 
-
 		drawPlayer();
-		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK,false);
-		prn_xy(Player.health, 76, 1, CR_LRED, CR_BLACK,false);
+		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK, false);
+		prn_xy(Player.health, 76, 1, CR_LRED, CR_BLACK, false);
 		prn_xy("Alive Enemys: ", 50, 1, CR_LRED, CR_BLACK, false);
 		prn_xy(50 - chkAliveEnemy(), 64, 1, CR_LRED, CR_BLACK, false);
 		prn_xy("Score: ", 39, 1, CR_TURQ, CR_BLACK, false);
 		prn_xy(score, 46, 1, CR_LRED, CR_BLACK, false);
 		prn_xy("Time: ", 20, 1, CR_TURQ, CR_BLACK, false);
 		clock_t now_t = clock();
-		prn_xy((now_t - begin_t)/100, 26, 1, CR_LRED, CR_BLACK, false);
+		prn_xy((now_t - begin_t) / 100, 26, 1, CR_LRED, CR_BLACK, false);
 
 		system("cls");
 
@@ -336,7 +325,7 @@ void control(void)
 			LevelClear();
 		}
 		if (Player.health <= 0) {
-			
+
 			long msec = now_t - begin_t; // 단위는 milliseconds, 나누기 1000 하면 seconds
 
 			gameOver((int)msec / 100, score); //time, score

@@ -6,9 +6,7 @@ int debugScreen() {
 	system("pause");
 
 
-
-
-	while (1) {
+	while (true) {
 
 		puts("debug screen!");
 	}

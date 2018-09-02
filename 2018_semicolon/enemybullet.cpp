@@ -5,7 +5,8 @@ void spawnEnemy(int index_of_Enemy, int x, int y, int level) {
 	//if (isRight) {
 	Enemy[index_of_Enemy].posx = x;
 	Enemy[index_of_Enemy].posy = y;
-	if (level == 3) {	//3레벨이 제일높은 초록색 놈. 색깔변화: 초->남
+	if (level == 3) {
+		//3레벨이 제일높은 초록색 놈. 색깔변화: 초->남
 		Enemy[index_of_Enemy].health = 2;
 	}
 	else {
@@ -32,17 +33,25 @@ void drawEnemy(void) {
 		else {
 		*/
 		if (Enemy[i].health == 0) continue;
-		if (Enemy[i].level == 1) { //쫄병. 파란색
-			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_TURQ, CR_BLACK, false);	//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.   
+		if (Enemy[i].level == 1) {
+			//쫄병. 파란색
+			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_TURQ, CR_BLACK, false);
+			//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.   
 		}
-		else if (Enemy[i].level == 2) { //이등병, 짙은 빨강.
-			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_RED, CR_BLACK, false);	//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.  
+		else if (Enemy[i].level == 2) {
+			//이등병, 짙은 빨강.
+			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_RED, CR_BLACK, false);
+			//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.  
 		}
-		else if (Enemy[i].level == 3 && Enemy[i].health == 2) { //짱병. 초록색. 헬스가 1이면 남색.
-			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_GREEN, CR_BLACK, false);	//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.  
+		else if (Enemy[i].level == 3 && Enemy[i].health == 2) {
+			//짱병. 초록색. 헬스가 1이면 남색.
+			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_GREEN, CR_BLACK, false);
+			//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.  
 		}
-		else if (Enemy[i].level == 3 && Enemy[i].health == 1) { //짱병. 초록색. 헬스가 1이면 남색.
-			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_BLUE, CR_BLACK, false);	//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.  
+		else if (Enemy[i].level == 3 && Enemy[i].health == 1) {
+			//짱병. 초록색. 헬스가 1이면 남색.
+			prn_xy("▼", Enemy[i].posx, Enemy[i].posy, CR_BLUE, CR_BLACK, false);
+			//내가 병신이라 저따구 모양 말고는 적기의 모양으로 떠오르는게 없어서... 주석에다 뭘로 하면 좋을지 의견좀 써주셈.  
 		}
 
 
@@ -76,11 +85,9 @@ void drawEnemy(void) {
 	}
 }
 
-void FuckThoseCvalnomeuPlayer(int i)
-{
+void FuckThoseCvalnomeuPlayer(int i) {
 	if (Enemy[i].health != 0) {
-		for (int j = 0; j < MAX_ENEMY_BULLET; j++)
-		{
+		for (int j = 0; j < MAX_ENEMY_BULLET; j++) {
 			if (En_Bullet[j].isused == 0) {
 
 				En_Bullet[j].isused = true;
@@ -90,5 +97,5 @@ void FuckThoseCvalnomeuPlayer(int i)
 			}
 		}
 	}
-	
+
 }

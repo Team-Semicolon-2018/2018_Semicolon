@@ -20,7 +20,6 @@ void gameOver(int time, int score) {
 
 	system("cls");
 	prn_xy("GAME OVER", 26, 9, CR_LGREEN, CR_BLACK, false);
-	char itoa_tmp[10] = { 0, };
 
 	prn_xy("Score: ", 25, 12, CR_TURQ, CR_BLACK, false);
 	prn_xy(score, 33, 12, CR_LRED, CR_BLACK, false);
