@@ -1,10 +1,10 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>	 //헤더파일
-#include <time.h>
+#include <ctime>
 #include "disclaimer.h"
 #include "keydef.h"
 #include "colors.h"
@@ -14,6 +14,11 @@
 
 #include ".//inc//fmod.hpp" //fmod c++ header
 #pragma comment( lib, ".\\lib\\fmodex_vc.lib" ) // fmod library
+#include "sndenum.h"
+#include <tchar.h>
+
+
+
 using namespace FMOD;
 
 #define _CRT_SECURE_NO_WARNINGS

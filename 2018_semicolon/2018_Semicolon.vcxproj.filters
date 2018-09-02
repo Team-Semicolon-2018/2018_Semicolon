@@ -57,6 +57,9 @@
     <ClInclude Include="inc\fmod_output.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="sndenum.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -84,6 +87,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ctrlRank.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="snd.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,6 +129,12 @@
       <Filter>리소스 파일</Filter>
     </Media>
     <Media Include="..\res\bgm.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\explosion.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\res\starfox_vs_menu_move.wav">
       <Filter>리소스 파일</Filter>
     </Media>
   </ItemGroup>

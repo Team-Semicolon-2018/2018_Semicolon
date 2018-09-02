@@ -98,8 +98,60 @@ void title() {
 
 
 
-	prn_xy("Press Any Key To Start...", 27, 21, CR_TURQ, CR_BLACK, false);
-	getch();
+	prn_xy("[↑][↓]:이동 [space]:선택", 27, 21, CR_TURQ, CR_BLACK, false);
+	int menuindex = 1;
+	prn_xy("Start Game", 27, 23, CR_TURQ, CR_BLACK, false);
+	prn_xy("Help", 27, 24, CR_TURQ, CR_BLACK, false);
+	prn_xy("Options", 27, 25, CR_TURQ, CR_BLACK, false);
+	prn_xy(">", 25, 22 + menuindex, CR_RED, CR_BLACK, false);
+	while (1) {
+		getch();
+		if (GetAsyncKeyState(VK_DOWN)<0) {
+			prn_xy(" ", 25, 22 + menuindex, CR_RED, CR_BLACK, false);
+			if (menuindex > 1) {
+				menuindex--;
+			}else {
+				menuindex = 3;
+			}
+			
+			PlaySound(TEXT("..\\res\\starfox_vs_menu_move.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			prn_xy(">", 25, 22 + menuindex, CR_RED, CR_BLACK, false);
+		}
+		if (GetAsyncKeyState(VK_UP)<0) {
+			prn_xy(" ", 25, 22 + menuindex, CR_RED, CR_BLACK, false);
+			if (menuindex < 3) {
+				menuindex++;
+			}
+			else {
+				menuindex = 1;
+			}
+			PlaySound(TEXT("..\\res\\starfox_vs_menu_move.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			prn_xy(">", 25, 22 + menuindex, CR_RED, CR_BLACK, false);
+		}
+		if (GetAsyncKeyState(VK_SPACE)<0) {
+			PlaySound(TEXT("..\\res\\starfox_vs_menu_move.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
+			if (menuindex==1) {
+				control();
+
+			}
+			if(menuindex==2) {
+				debugScreen();
+
+			}
+			if(menuindex==3) {
+				VolumeCtrl();
+			}
+		}
+
+		
+	
+	
+	
+		
+		//prn_xy(" ", 25, 22 + menuindex, CR_BLACK, CR_BLACK, false);
+		
+	}
 	fflush(stdin);
 
 }

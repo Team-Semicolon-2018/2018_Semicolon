@@ -46,9 +46,6 @@ extern int Round;	//나중에 라운드에 따라 적 움직임 다양하게 만들거임. 물론 그러�
 extern HWND hwnd;
 extern HDC hdc; //윈도우 핸들
 
-extern System* _system;
-extern Channel* _channel;
-extern Sound* _sound;
 
 
 
@@ -61,6 +58,7 @@ extern Sound* _sound;
 int main(); //어이쿠 실수
 void gotoxy(short x, short y);
 int prn_xy(const char print[], int x, int y, int txtcolor, int bgcolor, bool enter);
+int prn_xy(int print, int x, int y, int txtcolor, int bgcolor, bool enter);
 
 void init();
 void hidecursor();
@@ -106,18 +104,20 @@ void RankDraw(bool enternick);
 
 
 
+void SoundInit(void);
+
+void StopSound(void);
+void VolumeSetSound(void);
+void SoundUpdate(void);
 
 
-
-
-
+void VolumeCtrl(void);
+void Sound_Play(int n);
 /*
 void start(void);
 void help(void);
 void EndScreen(void);
 */
-
-
 
 
 

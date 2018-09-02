@@ -29,7 +29,7 @@ void Flush_buffer(void)
 void AddRank(int time, int score)
 {
 	RankDraw(true); //반드시 먼저 호출
-	//system("pause");
+	system("pause");
 	system("cls");
 	Flush_buffer();
 	gotoxy(33, 13);
@@ -65,6 +65,11 @@ void RankSort(void) //ranksort함수는 셋 이상이 입력된 상태에서 호출하세요 [컴터�
 	{
 		for (j = 0; j<11; j++)
 		{
+			if(rank[j].time > 100000) {
+				rank[j].score = 0;
+				rank[j].time = 0;
+				rank[j].name[10] = NULL;
+			}
 			if (rank[j].score < rank[j + 1].score)
 			{
 				temp = rank[j];
@@ -78,6 +83,7 @@ void RankSort(void) //ranksort함수는 셋 이상이 입력된 상태에서 호출하세요 [컴터�
 					rank[j + 1] = temp;
 				}
 			}
+
 		}
 	}
 	FileSave();
@@ -149,7 +155,7 @@ void RankDraw(bool enternick)
 			gotoxy(x + 8, (i + 1) * 3 + 1);
 			printf("닉네임: %s", rank[i].name);
 			gotoxy(x + 26, (i + 1) * 3 + 1);
-			printf("시간: %d초", rank[i].time);
+			printf("시간: %.1f초", (float)rank[i].time/10);
 			gotoxy(x + 40, (i + 1) * 3 + 1);
 			printf("점수: %d", rank[i].score);
 			//SetColor(7);

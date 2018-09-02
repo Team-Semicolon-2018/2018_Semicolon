@@ -3,10 +3,13 @@
 
 int debugScreen() {
 	system("cls");
+	system("pause");
+
+
+
+
 	while (1) {
 
-		puts("Debug Screen!");
-		system("pause");
-		gameOver(3,3);
+		puts("debug screen!");
 	}
 }

@@ -50,7 +50,8 @@ void FuckthoseCvalnomeuEnemy(void)
 	}
 
 	Pl_Bullet[index].isused = 1;
-	PlaySound(TEXT("..\\res\\bullet.wav"), NULL, SND_FILENAME | SND_ASYNC);
+	Sound_Play(S_PL_BULLET);
+	//PlaySound(TEXT("..\\res\\bullet.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	Pl_Bullet[index].posx = Player.posx;
 	Pl_Bullet[index].posy = Player.posy;
 
@@ -67,12 +68,60 @@ int chkAliveEnemy() {
 
 }
 
+
+
+DWORD WINAPI musicthread(LPVOID lpParameter)
+{
+	//thread_data *td = (thread_data*)lpParameter;
+	//std::cout << "Success! thread id = " << td->m_id << std::endl;
+	while(1) {
+		SoundUpdate();
+		//Sleep(33);
+	}
+	return 0;
+}
+DWORD WINAPI moveenemy(LPVOID lpParameter)
+{
+	//thread_data *td = (thread_data*)lpParameter;
+	//std::cout << "Success! thread id = " << td->m_id << std::endl;
+	while (1) {
+		for (int i = 0; i < MAX_ENEMY; i++) {
+			Enemy[i].posy++;
+		}
+		Sleep(1000);
+
+		for(int j=0;j<3;j++) {
+			for (int i = 0; i < MAX_ENEMY; i++) {
+				Enemy[i].posx--;
+			}
+			Sleep(1000);
+		}
+		
+		for(int j=0;j<3;j++) {
+			for (int i = 0; i < MAX_ENEMY; i++) {
+				Enemy[i].posx++;
+			}
+			Sleep(1000);
+		}
+		
+		
+		
+	}
+	return 0;
+}
+
 void control(void)
 {
+
+
+	CreateThread(NULL, 0, musicthread, NULL, 0, 0);
+	CreateThread(NULL, 0, moveenemy, NULL, 0, 0);
+
 	clock_t begin_t = clock();
 
 	int score = 0;
-
+	int tmpmvl = 0;
+	int tmpmvr = 0;
 	Round = 1;
 
 	//플레이어 간격 반드시 3씩 띄울것
@@ -92,14 +141,16 @@ void control(void)
 	char itoa_tmp[10] = { 0, };
 	//Ready
 	system("cls");
+	StopSound();
 	PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
-	PlaySound(TEXT("..\\res\\start.wav"), NULL, SND_FILENAME | SND_ASYNC);
+	PlaySound(TEXT("..\\res\\NewPlayerInit.wav"), NULL,  SND_LOOP | SND_ASYNC);
+	//Sound_Play(S_START);
 
 	drawEnemy();
 	prn_xy("Player 1", 27, 15, CR_RED, CR_BLACK, false);
 	Sleep(2000);
 	prn_xy("Level", 27, 16, CR_RED, CR_BLACK, false);
-	prn_xy(itoa(Round, itoa_tmp, 10), 34, 16, CR_RED, CR_BLACK, false);
+	prn_xy(Round, 34, 16, CR_RED, CR_BLACK, false);
 	Sleep(2000);
 
 	system("cls");
@@ -107,6 +158,7 @@ void control(void)
 	prn_xy("Ready", 27, 17, CR_RED, CR_BLACK, false);
 	Sleep(4000);
 
+	PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
 
 
 	clock_t nowtime_tmp = clock();
@@ -114,14 +166,18 @@ void control(void)
 	long int firetime = 0;
 
 	int randtmp;
-
+	VolumeSetSound();
+	Sound_Play(S_BGM);
 	while (true)
 	{
+		
+		//VolumeSetSound();
 		drawEnemy();
 
 		//continue 쓰셈
 		for (int i = 0; i < MAX_BULLET; i++)
 		{
+
 			if (Pl_Bullet[i].isused == false) {
 				continue;
 			}
@@ -141,19 +197,22 @@ void control(void)
 					Pl_Bullet[i].isused = 0;
 					Enemy[j].health--;
 					if (Enemy[j].level == 3 && Enemy[j].health == 1) {
-						PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC);
-						
+						//PlaySound(TEXT("..\\res\\enemyhit3.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						Sound_Play(S_ENEMYHIT3);
 					}
 					else if (Enemy[j].level == 3 && Enemy[j].health == 0) {
-						PlaySound(TEXT("..\\res\\enemy3die.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						//PlaySound(TEXT("..\\res\\enemy3die.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						Sound_Play(S_ENEMYDIE3);
 						score += 3;
 					}
 					else if (Enemy[j].level == 2) {
-						PlaySound(TEXT("..\\res\\enemyhit2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						//PlaySound(TEXT("..\\res\\enemyhit2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						Sound_Play(S_ENEMYDIE2);
 						score += 2;
 					}
 					else if (Enemy[j].level == 1) {
-						PlaySound(TEXT("..\\res\\enemyhit1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						//PlaySound(TEXT("..\\res\\enemyhit1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+						Sound_Play(S_ENEMYDIE1);
 						score++;
 					}
 				}
@@ -218,14 +277,31 @@ void control(void)
 
 
 		if (((GetAsyncKeyState(KB_LEFT) & 0x8000) || (GetAsyncKeyState(KB_a) & 0x8000) || (GetAsyncKeyState(KB_A) & 0x8000)) && !(Player.posx < 3)) {
-
-			Player.posx--;
+			if(tmpmvl==0) { //slow down
+				Player.posx--;
+				tmpmvl++;
+			}else {
+				tmpmvl++;
+				if(tmpmvl>3) {
+					tmpmvl = 0;
+				}
+			}
+			
 
 		}
 		if (((GetAsyncKeyState(KB_RIGHT) & 0x8000) || (GetAsyncKeyState(KB_d) & 0x8000) || (GetAsyncKeyState(KB_D) & 0x8000)) && !(Player.posx > 77)) {
 
-			Player.posx++;
 
+			if (tmpmvr == 0) {//slow down
+				Player.posx++;
+				tmpmvr++;
+			}
+			else {
+				tmpmvr++;
+				if (tmpmvr>3) {
+					tmpmvr = 0;
+				}
+			}
 
 		}
 		if (GetAsyncKeyState(KB_SPACE) || (GetAsyncKeyState(KB_UP)) || (GetAsyncKeyState(KB_DOWN)) || (GetAsyncKeyState(KB_a)) || (GetAsyncKeyState(KB_s)) || (GetAsyncKeyState(KB_A)) || (GetAsyncKeyState(KB_S))) {
@@ -241,16 +317,18 @@ void control(void)
 
 		}
 
+
+
 		drawPlayer();
-		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK, false);
-		prn_xy(itoa(Player.health, itoa_tmp, 10), 76, 1, CR_LRED, CR_BLACK, false);
+		prn_xy("Health: ", 68, 1, CR_LRED, CR_BLACK,false);
+		prn_xy(Player.health, 76, 1, CR_LRED, CR_BLACK,false);
 		prn_xy("Alive Enemys: ", 50, 1, CR_LRED, CR_BLACK, false);
-		prn_xy(itoa(50 - chkAliveEnemy(), itoa_tmp, 10), 64, 1, CR_LRED, CR_BLACK, false);
+		prn_xy(50 - chkAliveEnemy(), 64, 1, CR_LRED, CR_BLACK, false);
 		prn_xy("Score: ", 39, 1, CR_TURQ, CR_BLACK, false);
-		prn_xy(itoa(score, itoa_tmp, 10), 46, 1, CR_LRED, CR_BLACK, false);
+		prn_xy(score, 46, 1, CR_LRED, CR_BLACK, false);
 		prn_xy("Time: ", 20, 1, CR_TURQ, CR_BLACK, false);
 		clock_t now_t = clock();
-		prn_xy(itoa((now_t - begin_t)/100, itoa_tmp, 10), 26, 1, CR_LRED, CR_BLACK, false);
+		prn_xy((now_t - begin_t)/100, 26, 1, CR_LRED, CR_BLACK, false);
 
 		system("cls");
 
@@ -258,11 +336,8 @@ void control(void)
 			LevelClear();
 		}
 		if (Player.health <= 0) {
-			// 시간 잴 코드
-
-			clock_t end_t = clock();
-
-			long msec = end_t - begin_t; // 단위는 milliseconds, 나누기 1000 하면 seconds
+			
+			long msec = now_t - begin_t; // 단위는 milliseconds, 나누기 1000 하면 seconds
 
 			gameOver((int)msec / 100, score); //time, score
 
@@ -274,12 +349,6 @@ void control(void)
 			if ((Enemy[(randtmp % MAX_ENEMY)].health != 0) && (randtmp % MAX_ENEMY) != 0) {
 
 				FuckThoseCvalnomeuPlayer((randtmp % MAX_ENEMY));
-
-
-				//puts("fuck");
-				//system("pause");
-				//printf("x:%d y:%d",En_Bullet[0].posx,En_Bullet[0].posy);
-				//system("pause");
 
 			}
 
