@@ -112,3 +112,6 @@ void start(void);
 void help(void);
 void EndScreen(void);
 */
+
+DWORD WINAPI musicthread(LPVOID lpParameter);
+DWORD WINAPI moveenemy(LPVOID lpParameter);

@@ -2,6 +2,15 @@
 #include "main.h"
 
 
+DWORD WINAPI musicthread(LPVOID lpParameter) { //뮤직 리프레시용 쓰레드
+	//thread_data *td = (thread_data*)lpParameter;
+	//std::cout << "Success! thread id = " << td->m_id << std::endl;
+	while (true) {
+		SoundUpdate();
+		//Sleep(33);
+	}
+}
+
 FMOD_SYSTEM *g_System; //FMOD system 변수선언
 FMOD_SOUND *g_Sound[10];
 FMOD_CHANNEL *channel = nullptr;

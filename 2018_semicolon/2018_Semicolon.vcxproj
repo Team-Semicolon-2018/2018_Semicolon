@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClCompile Include="2018_Semicolon.cpp" />
     <ClCompile Include="ctrlRank.cpp" />
+    <ClCompile Include="draw.cpp" />
     <ClCompile Include="ending.cpp" />
     <ClCompile Include="enemybullet.cpp" />
     <ClCompile Include="hidden.cpp" />

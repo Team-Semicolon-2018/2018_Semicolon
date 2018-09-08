@@ -5,9 +5,10 @@ int debugScreen() {
 	system("cls");
 	system("pause");
 
-
+	printf("\a");
 	while (true) {
 
 		puts("debug screen!");
+		//printf("\a");
 	}
 }
