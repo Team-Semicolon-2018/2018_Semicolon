@@ -12,7 +12,7 @@
 
 
 struct info {
-	char name[10];
+	char name[100];
 	int time;
 	int score;
 };
