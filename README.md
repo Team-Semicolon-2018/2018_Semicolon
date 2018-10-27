@@ -3,6 +3,8 @@
 
 2018 서부정보영재 산출물 (코드네임 Semicolon) 
 
+## 프로젝트 [여기](https://github.com/computerpark/Semicolon_Win32)로 갔습니다
+
 궁금한 점이 있다면 위키로 가세요 ↓
 
 https://github.com/ComputerPark/2018_Semicolon/wiki
